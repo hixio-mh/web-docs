@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Corey Butler -- Lead Developer -- goldglovecb
+
+# THANKS
+
+    Kevin Moritz
+    Brian Moeskau
+    Graham Butler
+
+# TECHNOLOGY COLOPHON
+
+    JavaScript, Node.js

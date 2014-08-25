@@ -1,1 +1,347 @@
-Test
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>NGN</title>
+  <meta name="description" content="NGN Documentation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+  <script src="./components/platform/platform.js"></script>
+
+  <link rel="import" href="./components/font-roboto/roboto.html">
+<!--  <link rel="import" href="./components/core-icons/core-icons.html">-->
+  <link rel="import" href="./components/core-toolbar/core-toolbar.html">
+  <link rel="import" href="./components/paper-button/paper-button.html">
+  <link rel="import" href="./components/paper-icon-button/paper-icon-button.html">
+  <link rel="import" href="./components/paper-shadow/paper-shadow.html">
+  <link rel="import" href="./components/paper-ripple/paper-ripple.html">
+<!--  <link rel="import" href="./components/paper-fab/paper-fab.html">-->
+  <link rel="import" href="./components/ngn-tree/ngn-tree.html">
+  <link rel="import" href="./components/ngn-treeitem/ngn-treeitem.html">
+  <link rel="import" href="./components/prism-js/prism-js.html">
+  <link rel="stylesheet" type="text/css" href="assets/style/screen.css"/>
+
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Carrois+Gothic);
+    html,
+    body {
+      font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+      background-color: #E6ECF1;
+      display: flex;
+      -webkit-box-direction: normal;
+      -moz-box-direction: normal;
+      -webkit-box-orient: vertical;
+      -moz-box-orient: vertical;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .columns {
+      display: flex;
+      flex: 1 1 auto;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-direction: normal;
+      -moz-box-direction: normal;
+      -webkit-box-orient: horizontal;
+      -moz-box-orient: horizontal;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-box-pack: start;
+      -moz-box-pack: start;
+      -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      -webkit-align-content: stretch;
+      -ms-flex-line-pack: stretch;
+      align-content: stretch;
+      -webkit-box-align: start;
+      -moz-box-align: start;
+      -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+    }
+
+    .columns > * {
+      flex: 1 1 auto;
+    }
+
+    .rows {
+      display: flex;
+      flex: 1 1 auto;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-direction: normal;
+      -moz-box-direction: normal;
+      -webkit-box-orient: vertical;
+      -moz-box-orient: vertical;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-box-pack: start;
+      -moz-box-pack: start;
+      -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      -webkit-align-content: stretch;
+      -ms-flex-line-pack: stretch;
+      align-content: stretch;
+      -webkit-box-align: start;
+      -moz-box-align: start;
+      -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+    }
+
+    .rows > * {
+      flex: 1 1 auto;
+    }
+
+    .columns > *, .rows > * {
+      -webkit-box-ordinal-group: 1;
+      -moz-box-ordinal-group: 1;
+      -webkit-order: 0;
+      -ms-flex-order: 0;
+      order: 0;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      -webkit-align-self: stretch;
+      -ms-flex-item-align: stretch;
+      align-self: stretch;
+    }
+
+    #main > * {
+      display: flex;
+      flex: 1 1 auto;
+    }
+
+    core-toolbar {
+      color: #141414;
+      fill: #141414;
+      background-color: transparent;
+    }
+
+    nav > core-toolbar {
+      color: #efefef;
+      fill: #efefef;
+      max-height: 45px;
+    }
+
+    nav {
+      font-size: smaller;
+      background-color: #171D25;
+      max-width: 285px;
+      color: #595959;
+/*
+      -webkit-box-shadow: inset -3px 0px 5px 0px rgba(0,0,0,1);
+      -moz-box-shadow: inset -3px 0px 5px 0px rgba(0,0,0,1);
+*/
+      box-shadow: inset -3px 0px 5px 0px rgba(0,0,0,.5);
+    }
+
+    nav > ul > li {
+      list-style-type: none;
+    }
+
+    .leftshadow {
+      margin: 4px 0 0 4px;
+      -webkit-box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.2);
+      -moz-box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.2);
+      box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.2);
+    }
+
+    #main > div {
+      padding: 8px;
+      font-family: 'Carrois+Gothic', robotodraft, 'Segue WT', sans-serif;
+    }
+
+    .paper-shadow-top-z-1 {
+      box-shadow: 0 2px 2px 0 rgba(255,255,255, 0.86);
+    }
+
+    #features {
+      padding: 0 !important;
+    }
+
+    #features > div > div {
+      padding: 16px;
+      margin: 4px 0 4px 0px;
+/*      border-bottom: 1px solid #ccc;*/
+    }
+
+    nav > ul {
+      padding: 0;
+    }
+    nav > ul > li {
+      padding: 8px 4px 4px 18px;
+    }
+
+    nav > ul > li > paper-button:hover {
+      color: #efefef;
+    }
+    nav > ul > li.selected {
+      border-left: 3px solid #00bff3;
+      background-color: #12181f;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0, 0.86);
+    }
+    nav > ul > li.selected > paper-button {
+      color: #fff;
+    }
+
+    ngn-treeitem /deep/ .ngn-treecolumn {
+      background-color: blue !important;
+      color: white;
+    }
+
+    ngn-tree > ngn-treeitem /deep/ #treenode {
+/*      border: 1px solid red !important;*/
+      display: block;
+    }
+
+    ngn-treeitem /deep/ .dragover {
+      background-color: #efefef;
+    }
+
+    prism-js { width: 50%;}
+  </style>
+
+  <link rel="stylesheet" href="./components/core-icon/core-icon.css" shim-shadowdom="">
+
+</head>
+<body unresolved touch-action="auto">
+<!--
+  <header>
+    <core-toolbar>
+      <paper-item>NGN</paper-item>
+      <span flex=""></span>
+      <paper-icon-button icon="refresh" role="button" tabindex="0"></paper-icon-button>
+      <paper-icon-button icon="menu" role="button" tabindex="0"></paper-icon-button>
+      <paper-icon-button icon="more-vert" role="button" tabindex="0"></paper-icon-button>
+    </core-toolbar>
+  </header>
+-->
+
+  <section id="main" class="columns">
+    <nav class="rows">
+<!--
+      <core-toolbar>
+        <paper-item>NGN</paper-item>
+        <span flex=""></span>
+        <paper-icon-button icon="menu" role="button" tabindex="0"></paper-icon-button>
+        <paper-icon-button icon="more-vert" role="button" tabindex="0"></paper-icon-button>
+      </core-toolbar>
+-->
+      <ul>
+        <li><paper-button label="Configurations"></paper-button></li>
+        <li><paper-button label="Logging"></paper-button></li>
+        <li><paper-button label="Custom Errors"></paper-button></li>
+        <li><paper-button label="Data Sources"></paper-button></li>
+        <li class="selected"><paper-button label="Email Servers"></paper-button></li>
+        <li><paper-button label="HTTP Servers"></paper-button></li>
+        <li><paper-button label="Processes | Network"></paper-button></li>
+        <li><paper-button label="Event Bus"></paper-button></li>
+        <li><paper-button label="Scheduled Tasks"></paper-button></li>
+        <li><paper-button label="Managed Processes (list)"></paper-button></li>
+      </ul>
+    </nav>
+    <div class="rows" id="features">
+
+      <prism-js language="javascript" theme="okaidia">
+        var x = function(a,b){
+          console.log(a);
+        };
+      </prism-js>
+<!--
+      <core-header-panel style="max-height:65px;">
+        <core-toolbar>
+          <div>Custom Exceptions</div>
+        </core-toolbar>
+      </core-header-panel>
+-->
+      <div class="columns">
+        <div>
+          <ngn-tree>
+            <ngn-treeitem label="Item A">
+              <div>test col</div>
+              <div>test col 2</div>
+            </ngn-treeitem>
+            <ngn-treeitem label="Item B" collapsed="false">
+              <div>col</div>
+              <div>col 2</div>
+              <ngn-treeitem label="SubItem B">
+                <div>B</div>
+                <div>B</div>
+                <ngn-treeitem label="SubItem C">
+                  <div>C</div>
+                  <div>C</div>
+                </ngn-treeitem>
+              </ngn-treeitem>
+            </ngn-treeitem>
+            <ngn-treeitem label="Item C" drag="false">
+              <div>C2</div>
+              <div>C2</div>
+            </ngn-treeitem>
+            <ngn-treeitem label="Item D" drag="false" drop="false">
+              <div>test col</div>
+              <div>test col 2</div>
+            </ngn-treeitem>
+            <ngn-treeitem expandOnDrop="true">
+              <label>Label A</label>
+              <div>L</div>
+              <div>L2</div>
+            </ngn-treeitem>
+          </ngn-tree>
+        </div>
+<!--        <div style="margin:12px;border-radius: 1px;background-color:#fff;">test</div>-->
+<!--
+        <div style="overflow: visible;max-width: 250px;" class="leftshadow">
+          Node listings
+        </div>
+        <div style="overflow: visible;max-width: 250px;" class="leftshadow">
+          Exception List
+        </div>
+        <div style="overflow: auto;" class="leftshadow">
+          Exception Detail
+        </div>
+-->
+      </div>
+    </div>
+    <div class="" style="flex: .1 .1 auto; max-width:55px;text-align:center;">
+<!--      <paper-fab icon="visibility" role="button" tabindex="0" aria-label="notifications" style="background-color:#393939;"></paper-fab>-->XXX
+    </div>
+  </section>
+<!--
+  <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      console.log('Ready');
+    });
+  </script>
+-->
+</body>
+</html>

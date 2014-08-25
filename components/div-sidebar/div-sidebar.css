@@ -1,0 +1,66 @@
+:host {
+  background: -webkit-linear-gradient(-60deg, #2d2d2d, #545454);
+  background: -moz-linear-gradient(-60deg, #2d2d2d, #545454);
+  background: linear-gradient(-60deg, #2d2d2d, #545454);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+:host(.left) {
+  right: auto;
+  left: 0;
+  border-right: 1px solid #777;
+}
+:host(:not(.left)) {
+  border-left: 1px solid #777;
+}
+
+:host #content  {
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+}
+:host(.expanded) > #content > #collapsed {
+  display: none;
+}
+:host(:not(.expanded)) > #content > #expanded {
+  display: none;
+}
+
+:host > #footer {
+  color: white;
+  display: inline-block;
+  background: rgba(0,0,0,0.4);
+  border-top: 1px solid #666;
+  bottom: 0;
+  width: 100%;
+  visibility: visible;
+}
+:host(.left) > #footer {
+  text-align: right;
+}
+:host > #footer {
+  cursor: pointer;
+}
+:host(.expanded:not(.left)) > #footer:before {
+  content: "\00a0 Close ❯";
+}
+:host(.expanded.left) > #footer:before {
+  content: "❮ Close\00a0";
+}
+:host(:not(.left)) > #footer:before {
+  content: "\00a0 ❮❮\00a0";
+}
+:host(.left) > #footer:before {
+  content: "\00a0 ❯❯\00a0";
+}

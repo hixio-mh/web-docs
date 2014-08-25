@@ -1,0 +1,211 @@
+:host {
+  var-blah: #000;
+}
+
+#treenode {
+  margin-left: 11px;
+  padding-left: 4px;
+  border: 1px dashed transparent;
+  border-left: 1px dotted #cecece;
+  border-right:0;
+  background-color: var(blah);
+}
+
+#treenode.top {
+  margin-left: 0;
+  border-left: 0;
+}
+
+#treenode.targetnorth {
+  border-top: 1px dashed red;
+}
+
+#treenode.targetsouth {
+  border-bottom: 1px dashed red;
+}
+
+.hide {
+  display: none;
+}
+
+#children {
+  position: relative;
+}
+
+#row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+#spacer {
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+/*  border-bottom: 1px dotted #333;*/
+}
+
+#row > * {
+  margin: 0 0 0 4px;
+}
+
+[draggable="true"] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+/*  cursor: move;*/
+}
+
+.dragover {
+  background-color: gold;
+}
+.preventdrop {
+  position: relative;
+}
+.preventdrop:before {
+  position: absolute;
+  top: 0px;
+  left: -12px;
+  content: "\00d7";
+  color: maroon;
+  text-shadow: 1px 1px 1px #efefef;
+  z-index: 10;
+}
+
+#icon {
+  content: "";
+  font-size: 14px;
+  width: 12px;
+  height: 18px;
+  line-height: 18px;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+#treenode.collapsed #row #icon,
+#treenode.expanded #row #icon {
+  cursor: pointer;
+}
+
+#treenode.collapsed #row #icon:before {
+  content: "\25B6";
+  font-size: 16px;
+}
+
+#treenode.expanded #row #icon:before {
+  content: "\25BC";
+  line-height: 20px;
+}
+
+@-webkit-keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -10%, 0);
+    transform: translate3d(0, -10%, 0);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -10%, 0);
+    -ms-transform: translate3d(0, -10%, 0);
+    transform: translate3d(0, -10%, 0);
+  }
+}
+
+#treenode.collapsed #children {
+  -webkit-animation-duration: .1s;
+  animation-duration: .1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeOutUp;
+  animation-name: fadeOutUp;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -10%, 0);
+    transform: translate3d(0, -10%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -10%, 0);
+    -ms-transform: translate3d(0, -10%, 0);
+    transform: translate3d(0, -10%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
+
+#treenode.expanded #children {
+  -webkit-animation-duration: .1s;
+  animation-duration: .1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}

@@ -1,0 +1,28 @@
+{
+  "name": "docs.nodengn.com",
+  "version": "1.0.0",
+  "authors": [
+    "Corey Butler <corey@nodengn.com>"
+  ],
+  "description": "The NGN documentation portal",
+  "main": "index.html",
+  "keywords": [
+    "NGN",
+    "admin"
+  ],
+  "license": "All Rights Reserved.",
+  "homepage": "http://nodengn.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-elements": "Polymer/paper-elements#~0.3.3",
+    "core-pages": "Polymer/core-pages#~0.3.3",
+    "paper-ripple": "Polymer/paper-ripple#~0.3.3"
+  }
+}
