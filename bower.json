@@ -21,8 +21,13 @@
     "tests"
   ],
   "dependencies": {
-    "paper-elements": "Polymer/paper-elements#~0.3.3",
-    "core-pages": "Polymer/core-pages#~0.3.3",
-    "paper-ripple": "Polymer/paper-ripple#~0.3.3"
+    "font-roboto": "Polymer/font-roboto#~0.3.5",
+    "core-tooltip": "Polymer/core-tooltip#~0.3.5",
+    "core-icons": "Polymer/core-icons#~0.3.5",
+    "core-icon-button": "Polymer/core-icon-button#~0.3.5",
+    "paper-tabs": "Polymer/paper-tabs#~0.3.5",
+    "prism-js": "~0.1.0",
+    "core-toolbar": "Polymer/core-toolbar#~0.3.5",
+    "paper-input": "Polymer/paper-input#~0.3.5"
   }
 }
