@@ -1,0 +1,87 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-header-panel/core-header-panel.html" />
+<link rel="import" href="../core-toolbar/core-toolbar.html" />
+<link rel="import" href="../core-collapse/core-collapse.html" />
+
+<polymer-element name="doc-exceptions" attributes="type, name, private, protected">
+  <template>
+    <link rel="stylesheet" href="./doc-exceptions.css">
+    <div id="main">
+      <core-header-panel mode="waterfall-tall" tallclass="medium-tall">
+        <div class="core-header animate medium-tall">
+          <core-toolbar>
+            <h2 style="color:#efefef !important;">GLOBAL EXCEPTIONS</h2>
+            <core-icon-button icon="print"></core-icon-button>
+            <span flex></span>
+          </core-toolbar>
+        </div>
+        <div class="content" style="padding:20px;">
+          <template repeat="{{e in errs}}">
+            <div style="display: flex; flex:1 1 auto;margin: 14px 0 0 0;">
+              <span><span style="font-weight: 400;font-size:24px;">{{e.title}}</span><span style="font-family: courier;font-size: small;color: #999;margin-left:12px;font-weight: bold;">{{e.type}}</span></span>
+              <span flex></span>
+              <span class="tag" style="padding: 5px;text-shadow: 1px 1px 1px #000;line-height:22px;vertical-align: middle;border-radius:3px;background-color: #333; color: #efefef; font-size: small;">{{e.severity}}</span>
+            </div>
+            <p>{{e.message}}</p>
+            <template if="{{ e.hascustom == true }}">
+              <button class="custom" on-click="{{toggleCustomAttr}}" collapsed="custom_{{e.type}}"><span>&raquo;</span>&nbsp;View Custom Attributes</button>
+              <core-collapse id="custom_{{e.type}}">
+                <div style="display:table;padding: 8px;margin-left:8px;background-color:rgba(0,0,0,.05);border-radius:2px;">
+                <template repeat="{{ a in e.customattrs }}">
+                  <div style="display:table-row;">
+                    <div style="display:table-cell;font-weight: bold;padding-right: 12px;font-size:small;">{{a.attribute}}:</div>
+                    <div style="display:table-cell;font-size:small;">{{a.value}}</div>
+                  </div>
+                </template>
+                </div>
+<!--
+                <table>
+                  <tbody>
+                    <template repeat="{{ a in e.customattrs }}">
+                      <tr>
+                        <th style="text-align:left;">X{{a.attribute}}</th>
+                        <td>Y{{a.value}}</td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+-->
+              </core-collapse>
+              <div style="height:1px;border-top:1px solid rgba(0,0,0,.05);margin:12px 0 12px 0;"></div>
+            </template>
+          </template>
+        </div>
+      </core-header-panel>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      ready: function () {
+      },
+      exceptionsChanged: function(err, data){
+        console.log(data);
+        this.errs = Object.keys(data).map(function(e){
+          var obj = data[e];
+          obj.title = e;
+          obj.hascustom = data[e].hasOwnProperty('custom');
+          if (obj.hascustom){
+            obj.customattrs = Object.keys(data[e].custom).map(function(ca){
+              return {
+                attribute: ca,
+                value: data[e].custom[ca]
+              };
+            });
+          }
+          return obj;
+        });
+      },
+      toggleCustomAttr: function(evt,i,el){
+        console.dir(el.nextElementSibling);
+        el.nextElementSibling.toggle();
+      }
+    });
+  </script>
+
+  <!--  <script src="./doc-class.js" type="text/javascript"></script>-->
+</polymer-element>

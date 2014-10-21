@@ -1,0 +1,56 @@
+{
+  "dependencies": {
+    "harmony-reflect": {
+      "json": false,
+      "local": false,
+      "native": false,
+      "line": 1
+    },
+    "util": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 304
+    }
+  },
+  "class": {
+    "name": "NGN.model.data.Monitor",
+    "description": "This is actually a method used to wrap a harmony proxy around a NGN.model.Model object.\r\nThis class **will change**. It is a polyfill for ECMAScript 6 Direct Proxies. At the\r\ntime of this writing, the ES6 standard has not been fully implemented by V8, though a\r\nsubstantial set of functionality has. As V8 and the ES6 specifications introduce more\r\nnative direct proxy and weakmap support, this class will reflect those changes.",
+    "extends": "",
+    "throws": [],
+    "line": 12,
+    "abstract": {},
+    "private": true
+  },
+  "globals": {},
+  "module": "ngn-sdk",
+  "hierarchy": [
+    "NGN.model.data.Monitor"
+  ],
+  "configuration": {},
+  "properties": {},
+  "methods": {
+    "constructor": {
+      "private": false,
+      "params": [
+        {
+          "type": "NGN.model.Model",
+          "name": "modelObj",
+          "description": "The model to monitor.",
+          "line": 19
+        }
+      ],
+      "definedby": "NGN.model.data.Monitor"
+    }
+  },
+  "datafields": {},
+  "virtuals": {},
+  "environment": [],
+  "events": {
+    "undefined": {
+      "type": null,
+      "line": 298,
+      "definedby": "NGN.model.data.Monitor"
+    }
+  }
+}

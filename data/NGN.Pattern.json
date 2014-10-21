@@ -1,0 +1,507 @@
+{
+  "dependencies": {
+    "util": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 136,
+      "definedby": "NGN.model.Model"
+    },
+    "events": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 136,
+      "definedby": "NGN.model.Model"
+    }
+  },
+  "class": {
+    "name": "NGN.Pattern",
+    "description": "",
+    "extends": "NGN.Class",
+    "throws": [],
+    "line": 33,
+    "experimental": true,
+    "singleton": true
+  },
+  "globals": {},
+  "module": "ngn-sdk",
+  "hierarchy": [
+    "NGN.Pattern",
+    "NGN.Class"
+  ],
+  "configuration": {},
+  "properties": {
+    "email": {
+      "accessor": false,
+      "line": 48,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "Uses [RFC 2822](http://www.faqs.org/rfcs/rfc2822.html).",
+      "default": "/(?:[a-z0-9!#$%&'*+/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "username": {
+      "accessor": false,
+      "line": 66,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "No spaces, between 3-16 characters.",
+      "default": "/^[a-z0-9_-]{3,16}$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "passwordSimple": {
+      "accessor": false,
+      "line": 84,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "Requires 6-18 characters.",
+      "default": "/^[a-z0-9_-]{6,18}$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "passwordStrong": {
+      "accessor": false,
+      "line": 109,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "Strong password with the following requirements.\r\n\n* At least 8 characters long.\r\n* At least 1 upper case AND at least 1 lower case.\r\n* At least 1 digit.\r\n* At least 1 symbol: `!@#",
+      "default": "/(?-i)(?",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "hex": {
+      "accessor": false,
+      "line": 127,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "Match a hex value (like `#ffffff`)",
+      "default": "/^#?([a-f0-9]{6}|[a-f0-9]{3})$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "slug": {
+      "accessor": false,
+      "line": 155,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "A common slug pattern.\r\n\n**String that matches:**\r\n\n   my-title-here\r\n\n**String that doesn't match:**\r\n\n   my_title_here (contains underscores)\r\n\n[Source](http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/)",
+      "default": "/^[a-z0-9-]+$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "domain": {
+      "accessor": false,
+      "line": 189,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "Checks domain names.\r\nThis validates domains based on latest specifications (RFCs 952 and 1123 dealing with hostnames and RFC 1035 dealing with domain name system requirements)\r\nexcept that it only includes realistic fully-qualified domains:\r\n\n* Requires at least one subdomain\r\n* Allows shortest top-level domains like &quot;ca&quot;, and &quot;museum&quot; as longest.\r\n\n**Other validation rules**\r\n\n* Labels/parts should be seperated by period.\r\n* Each label/part has maximum of 63 characters.\r\n* First and last character of label must be alphanumeric, other characters alphanumeric or hyphen.\r\n* Does not check maxlength of domain which incidentally is 253 characters of text (255 binary representation).\r\n\nFor a regular expression that matches ALL domains, use #anyDomain.\r\n\n[Source](http://www.regexlib.com)",
+      "default": "/^([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "anyDomain": {
+      "accessor": false,
+      "line": 209,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "For a more particular matcher that uses RFC 952, 1123, & 1035, see #domain.\r\n[Source](http://www.regexlib.com)",
+      "default": "/^([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)*[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "ip4": {
+      "accessor": false,
+      "line": 228,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "Matches an IPv4 address like `127.0.0.1`.",
+      "default": "/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "ip6": {
+      "accessor": false,
+      "line": 253,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "Matches IPv6 addresses like `FEDC:BA98::3210:FEDC:BA98:7654:3210` or `::0:0:0:FFFF:129.144.52.38`.\r\n\n**Non-Matches**\r\n\n* `FEDC:BA98:7654:3210:FEDC:BA98:7654:3210:1234`\r\n* `3210:FEDC:BA98:7654:3210:1234`\r\n* `:FEDC:BA98:7654:3210:`",
+      "default": "/^(^(([0-9A-Fa-f]{1,4}(((:[0-9A-Fa-f]{1,4}){5}::[0-9A-Fa-f]{1,4})|((:[0-9A-Fa-f]{1,4}){4}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,1})|((:[0-9A-Fa-f]{1,4}){3}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,2})|((:[0-9A-Fa-f]{1,4}){2}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,3})|(:[0-9A-Fa-f]{1,4}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,4})|(::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,5})|(:[0-9A-Fa-f]{1,4}){7}))$|^(::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,6})$)|^::$)|^((([0-9A-Fa-f]{1,4}(((:[0-9A-Fa-f]{1,4}){3}::([0-9A-Fa-f]{1,4}){1})|((:[0-9A-Fa-f]{1,4}){2}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,1})|((:[0-9A-Fa-f]{1,4}){1}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,2})|(::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,3})|((:[0-9A-Fa-f]{1,4}){0,5})))|([:]{2}[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,4})):|::)((25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{0,2})\\.){3}(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{0,2})$$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "htmlTags": {
+      "accessor": false,
+      "line": 279,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "RegExp",
+      "description": "Supports matching non-descript HTML tags.\r\n\n**Matches**\r\n    <a href=â€�http://net.tutsplus.com/â€�>Nettuts+</a>\r\n\n**Non-Matches**\r\n    <img src=â€�img.jpgâ€� alt=â€�My image>â€� /> (attributes can't contain greater than signs)\r\n\n[Source](http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/)",
+      "default": "/^<([a-z]+)([^<]+)*(?:>(.*)<\\/\\1>|\\s+\\/>)$/",
+      "required": false,
+      "definedby": "NGN.Pattern"
+    },
+    "mobileDevice": {
+      "accessor": false,
+      "line": 296,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": false,
+      "type": "RegExp",
+      "description": "A custom implementation detecting mobile devices with [detectmobilebrowser.com](http://detectmobilebrowser.com).",
+      "definedby": "NGN.Pattern"
+    },
+    "prototype": {
+      "accessor": false,
+      "line": 85,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": {},
+      "type": "Object",
+      "description": "The prototype of all objects.",
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    },
+    "super": {
+      "accessor": false,
+      "line": 92,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": {},
+      "type": "",
+      "description": "Refers to the parent class.",
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    }
+  },
+  "methods": {
+    "constructor": {
+      "private": false,
+      "params": [
+        {
+          "name": "config",
+          "line": 35
+        }
+      ],
+      "generator": false,
+      "returns": {},
+      "line": 35,
+      "throws": [],
+      "definedby": "NGN.Pattern",
+      "overrides": "NGN.Class"
+    },
+    "is": {
+      "private": false,
+      "params": [
+        {
+          "name": "regex",
+          "line": 345,
+          "method": {},
+          "param": {},
+          "i": 0,
+          "type": "RegExp",
+          "description": "The pattern matcher.",
+          "returns": {}
+        },
+        {
+          "name": "value",
+          "line": 345,
+          "i": 1,
+          "type": "String/Array",
+          "description": "The value to test."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Boolean"
+      },
+      "line": 345,
+      "throws": [],
+      "definedby": "NGN.Pattern"
+    },
+    "isMobileDevice": {
+      "private": false,
+      "params": [
+        {
+          "name": "value",
+          "line": 363,
+          "method": {},
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The user agent string."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "LogicalExpression"
+      },
+      "line": 363,
+      "throws": [],
+      "definedby": "NGN.Pattern"
+    },
+    "isEmail": {
+      "description": "Indicates the match is an email address.",
+      "line": 60,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isUsername": {
+      "description": "Indicates the match is a username.",
+      "line": 78,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isPasswordSimple": {
+      "description": "Indicates the match is a simple password.",
+      "line": 96,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isPasswordStrong": {
+      "description": "Indicates the match is a strong password.",
+      "line": 121,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isHex": {
+      "description": "Indicates the match is a hex value.",
+      "line": 139,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isSlug": {
+      "description": "Indicates the match is a slug.",
+      "line": 167,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isDomain": {
+      "description": "Indicates the match is a domain.",
+      "line": 202,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isAnyDomain": {
+      "description": "Indicates the match is any domain.",
+      "line": 222,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isIp4": {
+      "description": "Indicates the match is an IPv4 address.",
+      "line": 241,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isIp6": {
+      "description": "Indicates the match is an IPv6 address.",
+      "line": 265,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "isHtmlTag": {
+      "description": "Indicates the match is an HTML tag.",
+      "line": 291,
+      "param": {},
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "description": "The string to match."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "NGN.Pattern"
+    },
+    "Provides": {
+      "description": "the similar functionality to RegExp#test. Given a RegExp, it will test a value or\r\narray of values to see if they match a pattern. If an array is provided, it will loop through\r\nthe array, testing each element along the way. If _any_ element of the array does not match\r\nthe pattern, it will return `false`. If _all_ values match the pattern, it will return `true`.\r\n\n**Example**\r\n    var pattern = new NGN.Patterns();\r\n\n    console.log(pattern.is(/\\<b\\>(.*)\\<\\/b\\>/,'<b>Hello</b>')); // --> Outputs true.\r\n\n    console.log(pattern.is(/\\<b\\>(.*)\\<\\/b\\>/,['<b>Hello</b>','<b>World</b>'])); // --> Outputs true.\r\n\n    console.log(pattern.is(/\\<b\\>(.*)\\<\\/b\\>/,['<b>Hello</b>','World'])); // --> Outputs false. Second array item does not match.",
+      "line": 345,
+      "definedby": "NGN.Pattern"
+    },
+    "Indicates": {
+      "description": "the user agent is a mobile device.",
+      "line": 363,
+      "definedby": "NGN.Pattern"
+    },
+    "extend": {
+      "description": "The properties of the object being extended.\n    // Subclass\n    var Car = Vehicle.extend({\n      constructor: function (doors) {\n        Car.super.constructor.call(this, 'car');\n\n          Object.defineProperty(this,'doors',{\n            value:      doors || 4,\n            writable:   true,\n            enumerable: true\n          });\n        },\n        accelerate: function () {\n          console.log('The '+this.doors+'-door '+ Car.super.accelerate.call(this));\n        }\n    });",
+      "line": 65,
+      "param": {},
+      "params": [
+        {
+          "name": "obj",
+          "type": "Object",
+          "description": "The object containing `constructor` and methods of the new object."
+        }
+      ],
+      "returns": {
+        "type": "Object"
+      },
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    },
+    "mixin": {
+      "description": "Merges the source to target",
+      "line": 111,
+      "private": true,
+      "param": {},
+      "params": [
+        {
+          "name": "source",
+          "type": "Boolean",
+          "description": "New object (this).",
+          "i": 0
+        }
+      ],
+      "returns": {
+        "type": "Object"
+      },
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    }
+  },
+  "datafields": {},
+  "virtuals": {},
+  "environment": [],
+  "events": {}
+}

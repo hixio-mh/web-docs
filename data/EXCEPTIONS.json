@@ -1,0 +1,35 @@
+{
+  "Missing Constructor Error": {
+    "line": 7,
+    "name": "Missing Constructor Error",
+    "type": "MissingConstructorError",
+    "severity": "critical",
+    "message": "The class has no constructor",
+    "custom": {
+      "help": "Check the class to assure a constructor exists.",
+      "cause": "Misspelling is most common cause. It should be \"constructor\"."
+    }
+  },
+  "Missing Configuration Error": {
+    "line": 21,
+    "name": "Missing Configuration Error",
+    "type": "MissingConfigurationError",
+    "severity": "critical",
+    "message": "A configuration attribute was expected but not supplied.",
+    "custom": {
+      "help": "Check to assure the configuration item exists and is loaded.",
+      "cause": "Mislabeling a configuration item is the most common cause."
+    }
+  },
+  "Missing Configuration Error 2": {
+    "line": 32,
+    "name": "Missing Configuration Error 2",
+    "type": "MissingConfigurationError2",
+    "severity": "critical",
+    "message": "A configuration attribute was expected but not supplied.",
+    "custom": {
+      "help": "Check to assure the configuration item exists and is loaded.",
+      "cause": "Mislabeling a configuration item is the most common cause."
+    }
+  }
+}

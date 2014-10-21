@@ -1,0 +1,284 @@
+{
+  "dependencies": {},
+  "class": {
+    "name": "NGN.String",
+    "description": "",
+    "extends": "",
+    "throws": [],
+    "line": 10,
+    "experimental": true,
+    "singleton": true
+  },
+  "globals": {},
+  "module": "ngn-sdk",
+  "hierarchy": [
+    "NGN.String"
+  ],
+  "configuration": {},
+  "properties": {
+    "test": {
+      "private": false,
+      "protected": false,
+      "accessor": false,
+      "line": 190,
+      "type": "string",
+      "defaultValue": "unknown",
+      "read": true,
+      "write": true,
+      "definedby": "NGN.String"
+    }
+  },
+  "methods": {
+    "capitalize": {
+      "private": false,
+      "params": [
+        {
+          "name": "words",
+          "line": 21,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The words or sentence that will be capitalized.",
+          "returns": {}
+        },
+        {
+          "name": "firstWordOnly",
+          "line": 21,
+          "i": 1,
+          "type": "Boolean",
+          "description": "Only capitalize the first word detected in a sentence."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "String",
+        "description": "the word, words, or sentence with modified case.",
+        "name": "Returns"
+      },
+      "line": 21,
+      "throws": [],
+      "definedby": "NGN.String"
+    },
+    "uncapitalize": {
+      "private": false,
+      "params": [
+        {
+          "name": "words",
+          "line": 43,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The words or sentence that will be uncapitalized.",
+          "returns": {}
+        },
+        {
+          "name": "firstWordOnly",
+          "line": 43,
+          "i": 1,
+          "type": "Boolean",
+          "description": "Only uncapitalize the first word detected in a sentence."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "String",
+        "description": "the word, words, or sentence with modified case.",
+        "name": "Returns"
+      },
+      "line": 43,
+      "throws": [],
+      "definedby": "NGN.String"
+    },
+    "truncate": {
+      "private": false,
+      "params": [
+        {
+          "name": "word",
+          "line": 63,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The word to potentially truncate."
+        },
+        {
+          "name": "length",
+          "line": 63,
+          "i": 1,
+          "type": "Number",
+          "description": "The length to truncate at."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "LogicalExpression"
+      },
+      "line": 63,
+      "throws": [],
+      "definedby": "NGN.String"
+    },
+    "lpad": {
+      "private": false,
+      "params": [
+        {
+          "name": "word",
+          "line": 77,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "']\r\nThe character used for padding."
+        },
+        {
+          "name": "padLength",
+          "line": 77,
+          "i": 1,
+          "type": "Number",
+          "description": "The number of padding spaced."
+        },
+        {
+          "name": "padCharacter",
+          "line": 77,
+          "i": 2
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "unknown"
+      },
+      "line": 77,
+      "throws": [],
+      "definedby": "NGN.String"
+    },
+    "rpad": {
+      "private": false,
+      "params": [
+        {
+          "name": "word",
+          "line": 98,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "']\r\nThe character used for padding."
+        },
+        {
+          "name": "padLength",
+          "line": 98,
+          "i": 1,
+          "type": "Number",
+          "description": "The number of padding spaced."
+        },
+        {
+          "name": "padCharacter",
+          "line": 98,
+          "i": 2
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "unknown"
+      },
+      "line": 98,
+      "throws": [],
+      "definedby": "NGN.String"
+    },
+    "cpad": {
+      "private": false,
+      "params": [
+        {
+          "name": "word",
+          "line": 121,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "']\r\nThe character used for padding."
+        },
+        {
+          "name": "padLength",
+          "line": 121,
+          "i": 1,
+          "type": "Number",
+          "description": "The number of padding spaced."
+        },
+        {
+          "name": "padCharacter",
+          "line": 121,
+          "i": 2
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "unknown"
+      },
+      "line": 121,
+      "throws": [],
+      "definedby": "NGN.String"
+    },
+    "center": {
+      "private": false,
+      "params": [
+        {
+          "name": "word",
+          "line": 147,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "']\r\nThe character used for padding."
+        },
+        {
+          "name": "totalLength",
+          "line": 147,
+          "i": 1,
+          "type": "Number",
+          "description": "The total number of characters (word+padding) for the output."
+        },
+        {
+          "name": "fillCharacter",
+          "line": 147,
+          "i": 2
+        },
+        {
+          "name": "beginLeft",
+          "line": 147,
+          "i": 3,
+          "type": "Boolean",
+          "description": "Padded characters are added in a Left-Right-Left-Right-etc pattern by default. Set this to `false`\r\nto switch to Right-Left-Right-Left-etc."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "unknown"
+      },
+      "line": 147,
+      "throws": [],
+      "definedby": "NGN.String"
+    },
+    "quote": {
+      "private": false,
+      "params": [
+        {
+          "name": "word",
+          "line": 180,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The character used to identify a quote."
+        },
+        {
+          "name": "chars",
+          "line": 180,
+          "i": 1
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "boolean"
+      },
+      "line": 180,
+      "throws": [],
+      "definedby": "NGN.String"
+    }
+  },
+  "datafields": {},
+  "virtuals": {},
+  "environment": [],
+  "events": {}
+}

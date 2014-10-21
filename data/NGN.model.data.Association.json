@@ -1,0 +1,114 @@
+{
+  "dependencies": {},
+  "class": {
+    "name": "NGN.model.data.Association",
+    "description": "Represents a cross reference from one model to another (data association).\r\nFor example, a person may have multiple orders. If a person and order are\r\ndefined in their own NGN.model.Model definitions, then a cross reference is used to\r\nlink them together.\r\n\nFor those coming from a relational database background, the concepts are\r\nsimilar to a relationship.",
+    "extends": "Class",
+    "throws": [],
+    "line": 12
+  },
+  "globals": {},
+  "module": "ngn-sdk",
+  "hierarchy": [
+    "NGN.model.data.Association"
+  ],
+  "configuration": {
+    "cardinatility": {
+      "type": "The cardinality of the relationship from parent to child.\r\n\nThe relationship is defined as a _<parent>_:_<child>_ pair,\r\nbased on the parent --> child relationship.\r\n\nValid values are:\r\n\n* **0:N**: Any number of children. (default)\r\n* **1:N**: Between one and infinite children.\r\n* **1:1**: One and only one child.\r\n* **0:1**: Zero or one child.\r\n* **Custom**: `<begin_range>:<end_range>`\r\nCustom relationship examples:\r\n- `1:4` means between 1 and 4 children\r\n- `0:3` means up to 3 children.",
+      "required": false,
+      "line": 44,
+      "definedby": "NGN.model.data.Association"
+    },
+    "model": {
+      "type": "(required)\r\nThe parent model, such as `NGN.model.Model`.",
+      "line": 54,
+      "definedby": "NGN.model.data.Association"
+    },
+    "onDelete": {
+      "type": "Referential integrity. When the parent model is deleted,\r\nthe following action is taken in accordance to #cardinality rules:\r\n\n* **cascade**: Delete all child #model instances.\r\n* **restrict**: Do not allow removal of the child.\r\n* **setnull**: Set the parent foreign key/id/ref to `null`.",
+      "required": false,
+      "line": 81,
+      "definedby": "NGN.model.data.Association"
+    }
+  },
+  "properties": {
+    "cardinality": {
+      "private": false,
+      "protected": false,
+      "accessor": false,
+      "line": 44,
+      "write": true,
+      "read": true,
+      "cfg": {},
+      "definedby": "NGN.model.data.Association"
+    },
+    "min": {
+      "accessor": false,
+      "line": 93,
+      "read": true,
+      "write": false,
+      "private": true,
+      "protected": false,
+      "type": "Number",
+      "description": "The minimum number of associated models required to validate the parent model.",
+      "definedby": "NGN.model.data.Association"
+    },
+    "max": {
+      "accessor": false,
+      "line": 107,
+      "read": true,
+      "write": false,
+      "private": true,
+      "protected": false,
+      "type": "Number",
+      "description": "The maximum number of associated models required to validate the parent model.\r\nThis is `undefined` when no maximum is specified.",
+      "definedby": "NGN.model.data.Association"
+    }
+  },
+  "methods": {
+    "constructor": {
+      "private": false,
+      "params": [
+        {
+          "name": "config",
+          "line": 18,
+          "param": {},
+          "i": 0,
+          "type": "Object"
+        }
+      ],
+      "generator": false,
+      "returns": {},
+      "line": 18,
+      "throws": [],
+      "description": "",
+      "definedby": "NGN.model.data.Association"
+    },
+    "serialize": {
+      "private": false,
+      "params": [
+        {
+          "name": "value",
+          "line": 123,
+          "method": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "ConditionalExpression"
+      },
+      "line": 123,
+      "throws": [],
+      "definedby": "NGN.model.data.Association"
+    },
+    "Serialize": {
+      "description": "the objects contained in the association.",
+      "line": 123,
+      "definedby": "NGN.model.data.Association"
+    }
+  },
+  "datafields": {},
+  "virtuals": {},
+  "environment": [],
+  "events": {}
+}

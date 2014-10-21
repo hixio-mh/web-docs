@@ -1,0 +1,176 @@
+{
+  "dependencies": {
+    "./bufferjoiner": {
+      "json": false,
+      "local": true,
+      "native": false,
+      "line": 49
+    },
+    "watch": {
+      "json": false,
+      "local": false,
+      "native": false,
+      "line": 62
+    },
+    "wrench": {
+      "json": false,
+      "local": false,
+      "native": false,
+      "line": 75
+    },
+    "fs": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 91
+    },
+    "os": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 115
+    },
+    "node-uuid": {
+      "json": false,
+      "local": false,
+      "native": false,
+      "line": 201
+    }
+  },
+  "class": {
+    "name": "UTIL",
+    "description": "A utility class.",
+    "extends": "",
+    "throws": [],
+    "line": 8,
+    "private": true,
+    "experimental": true,
+    "singleton": true
+  },
+  "globals": {},
+  "module": "ngn",
+  "hierarchy": [
+    "UTIL"
+  ],
+  "configuration": {},
+  "properties": {
+    "PROXY_SUPPORT": {
+      "accessor": false,
+      "line": 27,
+      "read": true,
+      "write": false,
+      "private": true,
+      "protected": false,
+      "type": "Boolean",
+      "description": "Indicates the environment has ES6 Direct Proxy Support",
+      "definedby": "UTIL"
+    },
+    "bufferjoiner": {
+      "accessor": false,
+      "line": 46,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": false,
+      "type": "Object",
+      "description": "A custom buffer joiner.",
+      "definedby": "UTIL"
+    },
+    "{Object\"": {
+      "accessor": false,
+      "line": 59,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": false,
+      "type": "",
+      "description": "watch\nThe watch module.",
+      "definedby": "UTIL"
+    }
+  },
+  "methods": {
+    "wrench": {
+      "description": "The wrench utility library.",
+      "line": 72,
+      "definedby": "UTIL"
+    },
+    "writeableDir": {
+      "description": "Determines whether the directory is writeable or not.",
+      "line": 87,
+      "param": {},
+      "params": [
+        {
+          "name": "dir",
+          "type": "String",
+          "description": "The directory in question."
+        }
+      ],
+      "returns": {
+        "type": "Boolean"
+      },
+      "definedby": "UTIL"
+    },
+    "notImplemented": {
+      "description": "Log a `NOT IMPLEMENTED` message to the console, indicating what method is not yet implemented in the API.",
+      "line": 126,
+      "param": {},
+      "params": [
+        {
+          "name": "filename",
+          "type": "String",
+          "description": "The message to display (such as method name and/or line number).",
+          "i": 0
+        }
+      ],
+      "definedby": "UTIL"
+    },
+    "sleep": {
+      "description": "A generic method to sleep for a specific amount of time.",
+      "line": 144,
+      "param": {},
+      "params": [
+        {
+          "name": "period",
+          "type": "Number",
+          "description": "The number of seconds to sleep."
+        }
+      ],
+      "definedby": "UTIL"
+    },
+    "unrequire": {
+      "description": "Reverts `require('some_module')`. Requires the full path of the module in order to work.",
+      "line": 162,
+      "param": {},
+      "params": [
+        {
+          "name": "file",
+          "type": "String",
+          "description": "(required)\nThe absolute path of the file that should be *un*required."
+        }
+      ],
+      "private": true,
+      "definedby": "UTIL"
+    },
+    "uuid": {
+      "description": "Generate a UUID.\n\n**Simple Example**\n\n    console.log(UTIL.uuid()); // --> Outputs a time-based UUID.\n    console.log(UTIL.uuid(true)); // --> Outputs a random UUID.",
+      "line": 195,
+      "param": {},
+      "params": [
+        {
+          "name": "random",
+          "type": "Number",
+          "description": "Starting index in `buffer` at which to begin writing.",
+          "i": 0
+        }
+      ],
+      "returns": {
+        "type": "String"
+      },
+      "definedby": "UTIL"
+    }
+  },
+  "datafields": {},
+  "virtuals": {},
+  "environment": [],
+  "events": {}
+}

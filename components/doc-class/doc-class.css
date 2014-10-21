@@ -1,0 +1,54 @@
+#main {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 0;
+  margin: 0;
+}
+core-toolbar {
+  background: transparent !important;
+}
+core-toolbar > h3 {
+  margin: 0;
+  font-weight: 500;
+  line-height: 26px;
+  vertical-align: bottom;
+  text-shadow: 1px 1px 0px #dcdcdc;
+}
+core-header-panel {
+  height: 100%;
+}
+core-header-panel[mode=cover]::shadow #mainContainer {
+  left: 70px;
+}
+.core-header {
+  height: 60px;
+  line-height: 60px;
+  font-size: 18px;
+  padding: 0 10px;
+  background-color: #fefefe;
+  color: #212121;
+  transition: height 0.2s;
+}
+.core-header.tall {
+  height: 10%;
+}
+.core-header.medium-tall {
+  height: 120px;
+}
+.content {
+  height: 3000px;
+  background: #fefefe;
+  /*        pink #DB0A5B*/
+}
+.type-deprecated {
+  background: linear-gradient(#fefefe, #AAAAAA) !important;
+}
+.type-removed {
+  background: linear-gradient(#fefefe, #D64541) !important;
+}
+.type-experimental {
+  background: linear-gradient(#fefefe, #E4F1FE) !important;
+}

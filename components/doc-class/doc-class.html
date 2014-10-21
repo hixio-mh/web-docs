@@ -1,0 +1,53 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-header-panel/core-header-panel.html" />
+<link rel="import" href="../core-toolbar/core-toolbar.html" />
+
+<polymer-element name="doc-class" attributes="type, name, private, protected">
+  <template>
+    <link rel="stylesheet" href="./doc-class.css">
+    <style>
+
+    </style>
+    <div id="main">
+      <core-header-panel mode="waterfall-tall" tallclass="medium-tall">
+        <div class="core-header animate medium-tall">
+          <core-toolbar>
+            <h3><template if="{{ base == 'class' }}"><img src="../../assets/icons/class.svg" height="28px" style="vertical-align:bottom;">&nbsp;</template>{{name}}</h3>
+            <template bind="{{code}}"><core-icon-button src="../../assets/icons/code.svg" class="subtle" id="togglecode"></core-icon-button></template>
+            <core-icon-button icon="print"></core-icon-button>
+            <span flex></span>
+<!--            <span><paper-input label="Filter Attributes" floatingLabel="true" style="font-size: 14px;margin-top:12px;"></paper-input></span>-->
+            <core-icon-button src="../../assets/icons/configuration.svg"></core-icon-button>
+            <core-icon-button src="../../assets/icons/properties.svg"></core-icon-button>
+            <core-icon-button src="../../assets/icons/data.svg"></core-icon-button>
+            <core-icon-button src="../../assets/icons/virtual.svg"></core-icon-button>
+            <core-icon-button src="../../assets/icons/function.svg"></core-icon-button>
+            <core-icon-button src="../../assets/icons/events.svg"></core-icon-button>
+          </core-toolbar>
+        </div>
+        <div class="content type-{{type}}">
+          <template bind="{{code}}">
+            Code: {{code}}
+          </template>
+          <content></content>
+        </div>
+      </core-header-panel>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      base: 'class',
+      type: 'class',
+      ready: function () {
+        if (['singleton','class'].indexOf(this.type.toLowerCase())){
+          this.base = "class";
+        }
+//        this.data = null;
+        console.log(this.type)
+      }
+    });
+  </script>
+
+  <!--  <script src="./doc-class.js" type="text/javascript"></script>-->
+</polymer-element>

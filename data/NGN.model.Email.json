@@ -1,0 +1,1044 @@
+{
+  "dependencies": {
+    "hooks": {
+      "json": false,
+      "local": false,
+      "native": false,
+      "line": 1,
+      "definedby": "NGN.model.Model"
+    },
+    "util": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 136,
+      "definedby": "NGN.model.Model"
+    },
+    "events": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 136,
+      "definedby": "NGN.model.Model"
+    }
+  },
+  "class": {
+    "name": "NGN.model.Email",
+    "description": "Represents an email address and provides helper methods for managing it, such as\r\nsyntax validation.",
+    "extends": "NGN.model.Model",
+    "throws": [],
+    "line": 8,
+    "docauthor": "Corey Butler"
+  },
+  "globals": {},
+  "module": "ngn-sdk",
+  "hierarchy": [
+    "NGN.model.Email",
+    "NGN.model.Model"
+  ],
+  "configuration": {
+    "type": {
+      "line": 16,
+      "definedby": "NGN.model.Email",
+      "overrides": "NGN.model.Model"
+    },
+    "idAttribute": {
+      "line": 17,
+      "definedby": "NGN.model.Email",
+      "overrides": "NGN.model.Model"
+    },
+    "address": {
+      "type": "(required)\r\nThe email address (i.e. me@domain.com).",
+      "line": 24,
+      "definedby": "NGN.model.Email"
+    },
+    "valid": {
+      "type": "Indicates the address is valid.",
+      "required": false,
+      "line": 38,
+      "definedby": "NGN.model.Email"
+    },
+    "id": {
+      "line": 158,
+      "type": "String/Number/Date",
+      "description": "The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value.",
+      "required": false,
+      "default": "null",
+      "definedby": "NGN.model.Model"
+    },
+    "allowInvalidSave": {
+      "type": "Set this to true to allow a save even though not all of the data properties\r\npass validation tests.",
+      "required": false,
+      "line": 174,
+      "definedby": "NGN.model.Model"
+    },
+    "disableDataValidation": {
+      "type": "Only used when #save is called. Setting this to `true` will bypass data validation.",
+      "required": false,
+      "line": 184,
+      "definedby": "NGN.model.Model"
+    },
+    "dataMap": {
+      "type": "An object mapping model attribute names to data storage field names.\r\n\n_Example_\r\n    {\r\n      father: 'dad',\r\n     email: 'eml',\r\n     image: 'img',\r\n     displayName: 'dn',\r\n     firstName: 'gn',\r\n     lastName: 'sn',\r\n     middleName: 'mn',\r\n     gender: 'sex',\r\n     dob: 'bd',\r\n    }",
+      "line": 348,
+      "definedby": "NGN.model.Model"
+    }
+  },
+  "properties": {
+    "address": {
+      "accessor": false,
+      "line": 28,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": false,
+      "type": "String",
+      "description": "The email address (i.e. me@domain.com).",
+      "definedby": "NGN.model.Email"
+    },
+    "Indicates": {
+      "accessor": false,
+      "line": 68,
+      "read": true,
+      "write": false,
+      "private": false,
+      "protected": false,
+      "type": "Boolean",
+      "description": "the address is valid syntax",
+      "definedby": "NGN.model.Email"
+    },
+    "validationCode": {
+      "accessor": false,
+      "line": 52,
+      "read": true,
+      "write": false,
+      "private": false,
+      "protected": false,
+      "type": "String",
+      "description": "The validation code assigned to this email address",
+      "default": "null",
+      "required": false,
+      "definedby": "NGN.model.Email"
+    },
+    "type": {
+      "private": true,
+      "protected": false,
+      "accessor": false,
+      "line": 42,
+      "write": true,
+      "read": true,
+      "cfg": {},
+      "definedby": "NGN.model.Model"
+    },
+    "idAttribute": {
+      "private": true,
+      "protected": false,
+      "accessor": false,
+      "line": 54,
+      "write": true,
+      "read": true,
+      "cfg": {},
+      "definedby": "NGN.model.Model"
+    },
+    "fields": {
+      "accessor": false,
+      "line": 66,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "Object",
+      "description": "A private object containing the data fields of the model, including\r\nvalidators & default values.",
+      "definedby": "NGN.model.Model"
+    },
+    "virtuals": {
+      "accessor": false,
+      "line": 88,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "Object",
+      "description": "A private object containing virtual data attributes and generated data.",
+      "definedby": "NGN.model.Model"
+    },
+    "validators": {
+      "accessor": false,
+      "line": 100,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "Object",
+      "description": "The validation rules used to verify data integrity when persisting to a datasource.",
+      "definedby": "NGN.model.Model"
+    },
+    "isNew": {
+      "accessor": false,
+      "line": 112,
+      "read": true,
+      "write": false,
+      "private": true,
+      "protected": false,
+      "type": "Boolean",
+      "description": "Indicates the model is new or does not exist according to the persistence store.",
+      "definedby": "NGN.model.Model"
+    },
+    "isDestroyed": {
+      "accessor": false,
+      "line": 124,
+      "read": true,
+      "write": false,
+      "private": true,
+      "protected": false,
+      "type": "Boolean",
+      "description": "Indicates the model has been destroyed/deleted and should no longer exist.",
+      "definedby": "NGN.model.Model"
+    },
+    "modified": {
+      "accessor": false,
+      "line": 135,
+      "read": true,
+      "write": false,
+      "private": false,
+      "protected": false,
+      "type": "Boolean",
+      "description": "Indicates one or more data properties has changed.",
+      "definedby": "NGN.model.Model"
+    },
+    "oid": {
+      "accessor": false,
+      "line": 147,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "String",
+      "description": "The raw object ID, which is either the #id or #idAttribute depending\r\non how the object is configured.",
+      "default": "null",
+      "required": false,
+      "definedby": "NGN.model.Model"
+    },
+    "id": {
+      "line": 158,
+      "type": "String/Number/Date",
+      "description": "The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value.",
+      "required": false,
+      "default": "null",
+      "definedby": "NGN.model.Model"
+    },
+    "originalConfig": {
+      "accessor": false,
+      "line": 207,
+      "read": true,
+      "write": false,
+      "private": false,
+      "protected": false,
+      "type": "Object",
+      "description": "The original config values passed to the constructor.",
+      "definedby": "NGN.model.Model"
+    },
+    "fetched": {
+      "accessor": false,
+      "line": 218,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "Boolean",
+      "description": "Stores whether the object is considered fetched.",
+      "definedby": "NGN.model.Model"
+    },
+    "EXTENDEDMODEL": {
+      "accessor": false,
+      "line": 241,
+      "read": true,
+      "write": false,
+      "private": true,
+      "protected": false,
+      "type": "Object",
+      "description": "Automatically generates a model with data management events.\r\nThis uses proxies (harmony proxies) to emit events on object\r\nproperty changes such as get/set/create/delete/etc.",
+      "definedby": "NGN.model.Model"
+    },
+    "changelog": {
+      "accessor": false,
+      "line": 264,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "Object[]",
+      "description": "An ordered array of changes made to the object data properties.\r\nThis should not be changed manually. Instead, use #getChangeLog\r\nand #rollback to manage this list.",
+      "definedby": "NGN.model.Model"
+    },
+    "xref": {
+      "accessor": false,
+      "line": 282,
+      "read": true,
+      "write": true,
+      "private": true,
+      "protected": false,
+      "type": "Object",
+      "description": "Contains references to associations.",
+      "definedby": "NGN.model.Model"
+    },
+    "prototype": {
+      "accessor": false,
+      "line": 85,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": {},
+      "type": "Object",
+      "description": "The prototype of all objects.",
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    },
+    "super": {
+      "accessor": false,
+      "line": 92,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": {},
+      "type": "",
+      "description": "Refers to the parent class.",
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    }
+  },
+  "methods": {
+    "constructor": {
+      "private": false,
+      "params": [
+        {
+          "name": "config",
+          "line": 13
+        }
+      ],
+      "generator": false,
+      "returns": {},
+      "line": 13,
+      "throws": [],
+      "description": "",
+      "definedby": "NGN.model.Email",
+      "overrides": "NGN.model.Model"
+    },
+    "createValidationCode": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "String"
+      },
+      "line": 87,
+      "throws": [],
+      "method": {},
+      "definedby": "NGN.model.Email"
+    },
+    "Generates": {
+      "description": "a validation code.",
+      "line": 87,
+      "definedby": "NGN.model.Email"
+    },
+    "prepConfig": {
+      "private": false,
+      "params": [
+        {
+          "name": "config",
+          "line": 570,
+          "protected": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "LogicalExpression"
+      },
+      "line": 570,
+      "throws": [],
+      "protected": true,
+      "definedby": "NGN.model.Model"
+    },
+    "addValidator": {
+      "private": false,
+      "params": [
+        {
+          "name": "property",
+          "line": 596,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The property to test."
+        },
+        {
+          "name": "validator",
+          "line": 596,
+          "i": 1,
+          "type": "Function/String[]/Number[]/Date[]/RegExp/Array",
+          "description": "The validation used to test the property value. This should return\r\n`true` when the data is valid and `false` when it is not.\r\n\n* When this is a _function_, the value is passed to it as an argument.\r\n* When this is a _String_, the value is compared for an exact match (case sensitive)\r\n* When this is a _Number_, the value is compared for equality.\r\n* When this is a _Date_, the value is compared for exact equality.\r\n* When this is a _RegExp_, the value is tested and the results of the RegExp#test are used to validate.\r\n* When this is an _Array_, the value is checked to exist in the array, regardless of data type. This is treated as an `enum`.\r\n* When this is _an array of dates_, the value is compared to each date for equality."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "BinaryExpression"
+      },
+      "line": 596,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "removeValidator": {
+      "private": false,
+      "params": [
+        {
+          "name": "attribute",
+          "line": 639,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The name of the attribute to remove from the validators."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 639,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "validate": {
+      "private": true,
+      "params": [
+        {
+          "name": "attribute",
+          "line": 653,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "Validate a specific attribute. By default, all attributes are tested.",
+          "private": {},
+          "returns": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Boolean",
+        "description": "true or false based on the validity of data.",
+        "name": "Returns"
+      },
+      "line": 653,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "enableDataValidation": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 735,
+      "throws": [],
+      "description": "Enable data validation if #disableDataValidation is `true`.",
+      "definedby": "NGN.model.Model"
+    },
+    "disableDataValidation": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 742,
+      "throws": [],
+      "description": "Disable data validation. Sets #disableDataValidation to `true`.",
+      "definedby": "NGN.model.Model"
+    },
+    "getDataFields": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "String[]"
+      },
+      "line": 750,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "getDataField": {
+      "private": false,
+      "params": [
+        {
+          "name": "fieldname",
+          "line": 763,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The name of the data field.",
+          "returns": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Object"
+      },
+      "line": 763,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "hasDataField": {
+      "private": false,
+      "params": [
+        {
+          "name": "fieldname",
+          "line": 773,
+          "param": {},
+          "i": 0,
+          "type": "String",
+          "description": "The name of the data field.",
+          "returns": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Boolean"
+      },
+      "line": 773,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "serialize": {
+      "private": false,
+      "params": [
+        {
+          "name": "obj",
+          "line": 795,
+          "param": {},
+          "i": 0,
+          "type": "Object",
+          "description": "Defaults to this object.",
+          "returns": {},
+          "protected": {}
+        },
+        {
+          "name": "serializeAssociations",
+          "line": 795,
+          "i": 1,
+          "type": "Boolean",
+          "description": "When set to `true`, any cross referenced data (NGN.model.Association) will be retrieved\r\nand serialized into JSON objects. Use this when a complete JSON dump is\r\nrequired."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Object"
+      },
+      "line": 795,
+      "throws": [],
+      "protected": true,
+      "definedby": "NGN.model.Model"
+    },
+    "getChanges": {
+      "private": false,
+      "params": [
+        {
+          "name": "serializeAssociations",
+          "line": 906,
+          "param": {},
+          "i": 0,
+          "type": "Boolean",
+          "description": "When set to `true`, any cross referenced data (NGN.model.Association) will be retrieved\r\nand serialized into JSON objects. Use this when a complete JSON dump is\r\nrequired."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "unknown"
+      },
+      "line": 906,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "fetch": {
+      "private": true,
+      "params": [
+        {
+          "name": "id",
+          "line": 1011,
+          "private": {},
+          "uses": {
+            "name": "serialize"
+          }
+        },
+        {
+          "name": "callback",
+          "line": 1011
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1011,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "save": {
+      "private": false,
+      "params": [
+        {
+          "name": "callback",
+          "line": 1022,
+          "param": {},
+          "i": 0,
+          "type": "Function",
+          "description": "Callback method.",
+          "uses": {
+            "name": "serialize"
+          }
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1022,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "destroy": {
+      "private": false,
+      "params": [
+        {
+          "name": "callback",
+          "line": 1059
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1059,
+      "throws": [],
+      "description": "Stop persisting the object (i.e. delete it from the datastore). This only works with #CRUD enabled and an #id specified.",
+      "definedby": "NGN.model.Model"
+    },
+    "getChangeLog": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "Array"
+      },
+      "line": 1080,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "rollback": {
+      "private": false,
+      "params": [
+        {
+          "name": "changes",
+          "line": 1094,
+          "param": {},
+          "i": 0,
+          "type": "Number",
+          "description": "The number of changes to rollback. A value of `-1` will rollback all changes."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1094,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "extension": {
+      "private": true,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "MemberExpression"
+      },
+      "line": 1134,
+      "throws": [],
+      "method": {},
+      "definedby": "NGN.model.Model"
+    },
+    "beforeDataChange": {
+      "private": false,
+      "params": [
+        {
+          "name": "changeObject",
+          "line": 1191,
+          "param": {},
+          "i": 0,
+          "type": "Object",
+          "description": "The JSON change object.",
+          "returns": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Boolean",
+        "description": "return value is used to determine whether processing continues or halts.",
+        "name": "The"
+      },
+      "line": 1191,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "beforeSave": {
+      "private": false,
+      "params": [
+        {
+          "name": "changeObject",
+          "line": 1203,
+          "param": {},
+          "i": 0,
+          "type": "Object",
+          "description": "The JSON change object.",
+          "returns": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Boolean",
+        "description": "return value is used to determine whether processing continues or halts.",
+        "name": "The"
+      },
+      "line": 1203,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "beforeDestroy": {
+      "private": false,
+      "params": [
+        {
+          "name": "changeObject",
+          "line": 1216,
+          "param": {},
+          "i": 0,
+          "type": "Object",
+          "description": "The JSON change object.",
+          "returns": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Boolean",
+        "description": "return value is used to determine whether processing continues or halts.",
+        "name": "The"
+      },
+      "line": 1216,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "getDataMap": {
+      "private": false,
+      "params": [
+        {
+          "name": "parm",
+          "line": 1228,
+          "param": {},
+          "i": 0,
+          "type": "Boolean",
+          "description": "When set to `true`, any missing model attributes not recognized in the specified #dataMap\r\nwill be added automatically using the model's field name.",
+          "returns": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "Object",
+        "description": "a key/value object of `attribute:field`",
+        "name": "Returns"
+      },
+      "line": 1228,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "onBeforeChange": {
+      "private": false,
+      "params": [
+        {
+          "name": "change",
+          "line": 1259,
+          "event": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "boolean"
+      },
+      "line": 1259,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "onChange": {
+      "private": false,
+      "params": [
+        {
+          "name": "change",
+          "line": 1277,
+          "event": {}
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1277,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "onBeforeSave": {
+      "private": false,
+      "params": [
+        {
+          "name": "done",
+          "line": 1292,
+          "event": {},
+          "param": {},
+          "i": 0,
+          "type": "Function",
+          "description": "Passed to the event listener to be continue processing when all preprocessing is done."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1292,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "onSave": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1300,
+      "throws": [],
+      "event": {},
+      "definedby": "NGN.model.Model"
+    },
+    "onBeforeFetch": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1311,
+      "throws": [],
+      "event": {},
+      "definedby": "NGN.model.Model"
+    },
+    "onFetch": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1319,
+      "throws": [],
+      "event": {},
+      "definedby": "NGN.model.Model"
+    },
+    "onBeforeDestroy": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1331,
+      "throws": [],
+      "event": {},
+      "definedby": "NGN.model.Model"
+    },
+    "onDestroy": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1339,
+      "throws": [],
+      "event": {},
+      "definedby": "NGN.model.Model"
+    },
+    "onNoData": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1350,
+      "throws": [],
+      "event": {},
+      "definedby": "NGN.model.Model"
+    },
+    "onRollback": {
+      "private": false,
+      "params": [
+        {
+          "name": "delta",
+          "line": 1360,
+          "event": {},
+          "param": {},
+          "i": 0,
+          "type": "Object",
+          "description": "The JSON change object."
+        }
+      ],
+      "generator": false,
+      "returns": {
+        "type": "void"
+      },
+      "line": 1360,
+      "throws": [],
+      "definedby": "NGN.model.Model"
+    },
+    "pre": {
+      "description": "This method will execute **before** the specified method.\r\nFor example:\r\n    var person = new NGN.model.Person();\r\n\n    person.pre('save',function(next){\r\n      ...\r\n      next();\r\n    });\r\nThis method is chainable, so it is possible to add additional\r\nhooks, like:\r\n    var person = new NGN.model.Person();\r\n\n    person.pre('save',function(next){\r\n      ...\r\n      next();\r\n    }).pre('save',function(next){\r\n      ...\r\n      next();\r\n    });",
+      "line": 525,
+      "chainable": {},
+      "private": true,
+      "definedby": "NGN.model.Model"
+    },
+    "post": {
+      "description": "This method will execute **after** the specified method.\r\nFor example:\r\n    var person = new NGN.model.Person();\r\n\n    person.post('save',function(next){\r\n      ...\r\n      next();\r\n    });\r\nThis method is chainable, so it is possible to add additional\r\nhooks, like:\r\n    var person = new NGN.model.Person();\r\n\n    person.post('save',function(next){\r\n      ...\r\n      next();\r\n    }).post('save',function(next){\r\n      ...\r\n      next();\r\n    });",
+      "line": 549,
+      "chainable": {},
+      "private": true,
+      "definedby": "NGN.model.Model"
+    },
+    "hook": {
+      "description": "The hook method can be used to provide an arbitrary handler for a specific method.\r\nFor example, custom error handling can be managed with `hook`.",
+      "line": 556,
+      "private": true,
+      "definedby": "NGN.model.Model"
+    },
+    "extend": {
+      "description": "The properties of the object being extended.\n    // Subclass\n    var Car = Vehicle.extend({\n      constructor: function (doors) {\n        Car.super.constructor.call(this, 'car');\n\n          Object.defineProperty(this,'doors',{\n            value:      doors || 4,\n            writable:   true,\n            enumerable: true\n          });\n        },\n        accelerate: function () {\n          console.log('The '+this.doors+'-door '+ Car.super.accelerate.call(this));\n        }\n    });",
+      "line": 65,
+      "param": {},
+      "params": [
+        {
+          "name": "obj",
+          "type": "Object",
+          "description": "The object containing `constructor` and methods of the new object."
+        }
+      ],
+      "returns": {
+        "type": "Object"
+      },
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    },
+    "mixin": {
+      "description": "Merges the source to target",
+      "line": 111,
+      "private": true,
+      "param": {},
+      "params": [
+        {
+          "name": "source",
+          "type": "Boolean",
+          "description": "New object (this).",
+          "i": 0
+        }
+      ],
+      "returns": {
+        "type": "Object"
+      },
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    }
+  },
+  "datafields": {
+    "id": {
+      "type": "String",
+      "description": "The unique ID of the person.",
+      "optional": true,
+      "default": null,
+      "line": 72,
+      "definedby": "NGN.model.Model"
+    }
+  },
+  "virtuals": {
+    "validSyntax": {
+      "line": 68,
+      "property": {},
+      "definedby": "NGN.model.Email"
+    }
+  },
+  "environment": [],
+  "events": {
+    "beforeChange": {
+      "type": "unknown",
+      "line": 1259,
+      "description": "Fired before a change is completed.\r\nProvides the following change object to the callback:\r\n  {\r\n    type: 'create|update|delete',\r\n    oldValue: Object, // Only exists for update and delete.\r\n    value: Object // Only exists for create and update\r\n  }",
+      "definedby": "NGN.model.Model"
+    },
+    "change": {
+      "type": "unknown",
+      "line": 1277,
+      "description": "Fired after the change is complete.\r\nProvides the following change object to the callback:\r\n  {\r\n    type: 'create|update|delete',\r\n    oldValue: Object, // Only exists for update and delete.\r\n    value: Object // Only exists for create and update\r\n  }",
+      "definedby": "NGN.model.Model"
+    },
+    "beforeSave": {
+      "type": "unknown",
+      "line": 1292,
+      "description": "Fired before the model attempts to persist data.",
+      "definedby": "NGN.model.Model"
+    },
+    "save": {
+      "type": null,
+      "line": 1300,
+      "description": "Fired when the model attempts to persist data to a datasource.",
+      "definedby": "NGN.model.Model"
+    },
+    "beforeFetch": {
+      "type": null,
+      "line": 1311,
+      "description": "Fired before the model attempts to populates its data from a datasource.",
+      "definedby": "NGN.model.Model"
+    },
+    "fetch": {
+      "type": null,
+      "line": 1319,
+      "description": "Fired when the model attempts to populate its data from a datasource.",
+      "definedby": "NGN.model.Model"
+    },
+    "beforeRemove": {
+      "type": null,
+      "line": 1331,
+      "description": "Fired before the model attempts to remove its data from a datasource.",
+      "definedby": "NGN.model.Model"
+    },
+    "destroy": {
+      "type": null,
+      "line": 1339,
+      "description": "Fired when the model has removed its data from a datasource.",
+      "definedby": "NGN.model.Model"
+    },
+    "noData": {
+      "type": null,
+      "line": 1350,
+      "description": "Fired when a #fetch returns no records.",
+      "definedby": "NGN.model.Model"
+    },
+    "rollback": {
+      "type": "unknown",
+      "line": 1360,
+      "description": "Fired when a rollback occurs.",
+      "definedby": "NGN.model.Model"
+    }
+  }
+}

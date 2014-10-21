@@ -1,0 +1,48 @@
+{
+  "dependencies": {},
+  "class": {
+    "name": "NGN.model.data.Store",
+    "description": "A data manager controls how data is saved/fetched from a data source (ORM).",
+    "extends": "Class",
+    "throws": [],
+    "line": 7,
+    "private": true
+  },
+  "globals": {},
+  "module": "ngn-sdk",
+  "hierarchy": [
+    "NGN.model.data.Store"
+  ],
+  "configuration": {
+    "datasource": {
+      "type": "(required)\r\nThe connection to the datasource where data will be stored.",
+      "line": 25,
+      "definedby": "NGN.model.data.Store"
+    }
+  },
+  "properties": {},
+  "methods": {
+    "constructor": {
+      "private": false,
+      "params": [
+        {
+          "name": "config",
+          "line": 13,
+          "param": {},
+          "i": 0,
+          "type": "Object"
+        }
+      ],
+      "generator": false,
+      "returns": {},
+      "line": 13,
+      "throws": [],
+      "description": "",
+      "definedby": "NGN.model.data.Store"
+    }
+  },
+  "datafields": {},
+  "virtuals": {},
+  "environment": [],
+  "events": {}
+}

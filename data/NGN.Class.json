@@ -1,0 +1,113 @@
+{
+  "dependencies": {
+    "util": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 136,
+      "definedby": "NGN.model.Model"
+    },
+    "events": {
+      "json": false,
+      "local": false,
+      "native": true,
+      "line": 136,
+      "definedby": "NGN.model.Model"
+    }
+  },
+  "class": {
+    "name": "NGN.Class",
+    "description": "A base class providing a simple inheritance model for JavaScript classes. All\nAPI classes are an extension of this model.<br/><br/>\n**Example:**\n\n    // Superclass\n    var Vehicle = Class.extend({\n      constructor: function (type) {\n        this.type = type;\n      },\n      accelerate: function() {\n        return this.type+' is accelerating';\n      }\n    });\n\n    // Subclass\n    var Car = Vehicle.extend({\n      constructor: function (doorCount) {\n        Car.super.constructor.call(this, 'car');\n\n          Object.defineProperty(this,'doors',{\n            value:      doorCount || 4, // Default = 4\n            writable:   true,\n            enumerable: true\n          });\n        },\n        accelerate: function () {\n          console.log('The '+this.doors+'-door '+ Car.super.accelerate.call(this));\n        }\n    });\n\n    var mustang = new Car(2);\n    mustang.accelerate();\n\n    //Outputs: The 2-door car is accelerating.",
+    "extends": "",
+    "throws": [],
+    "line": 41,
+    "docauthor": "Corey Butler",
+    "aside": {
+      "name": "guide"
+    },
+    "protected": true
+  },
+  "globals": {},
+  "module": "ngn",
+  "hierarchy": [
+    "NGN.Class"
+  ],
+  "configuration": {},
+  "properties": {
+    "prototype": {
+      "accessor": false,
+      "line": 85,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": {},
+      "type": "Object",
+      "description": "The prototype of all objects.",
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    },
+    "super": {
+      "accessor": false,
+      "line": 92,
+      "read": true,
+      "write": true,
+      "private": false,
+      "protected": {},
+      "type": "",
+      "description": "Refers to the parent class.",
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    }
+  },
+  "methods": {
+    "constructor": {
+      "private": false,
+      "params": [],
+      "generator": false,
+      "returns": {},
+      "line": 140,
+      "throws": [],
+      "definedby": "NGN.Class"
+    },
+    "extend": {
+      "description": "The properties of the object being extended.\n    // Subclass\n    var Car = Vehicle.extend({\n      constructor: function (doors) {\n        Car.super.constructor.call(this, 'car');\n\n          Object.defineProperty(this,'doors',{\n            value:      doors || 4,\n            writable:   true,\n            enumerable: true\n          });\n        },\n        accelerate: function () {\n          console.log('The '+this.doors+'-door '+ Car.super.accelerate.call(this));\n        }\n    });",
+      "line": 65,
+      "param": {},
+      "params": [
+        {
+          "name": "obj",
+          "type": "Object",
+          "description": "The object containing `constructor` and methods of the new object."
+        }
+      ],
+      "returns": {
+        "type": "Object"
+      },
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    },
+    "mixin": {
+      "description": "Merges the source to target",
+      "line": 111,
+      "private": true,
+      "param": {},
+      "params": [
+        {
+          "name": "source",
+          "type": "Boolean",
+          "description": "New object (this).",
+          "i": 0
+        }
+      ],
+      "returns": {
+        "type": "Object"
+      },
+      "definedby": "NGN.model.Model",
+      "overrides": "NGN.Class"
+    }
+  },
+  "datafields": {},
+  "virtuals": {},
+  "environment": [],
+  "events": {}
+}

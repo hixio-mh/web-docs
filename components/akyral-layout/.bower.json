@@ -1,0 +1,39 @@
+{
+  "name": "akyral-layout",
+  "authors": [
+    "Filipe Araujo <filipe.alves.araujo@gmail.com>"
+  ],
+  "description": "A responsive ui element built on Polymer that creates an app-like structure containing a drawer.",
+  "keywords": [
+    "akyral",
+    "layout",
+    "drawer",
+    "polymer",
+    "web-components"
+  ],
+  "main": "akyral-layout.html",
+  "license": "MIT",
+  "homepage": "https://github.com/filaraujo/akyral-layout/",
+  "ignore": [
+    "**/.*",
+    "**/*.scss",
+    "node_modules",
+    "bower_components",
+    "../",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.4.1"
+  },
+  "_release": "e1bd5d7e04",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e1bd5d7e04d8d8157d8bee22fa1bc5d5415dd4da"
+  },
+  "_source": "git://github.com/filaraujo/akyral-layout.git",
+  "_target": "master",
+  "_originalSource": "filaraujo/akyral-layout",
+  "_direct": true
+}

@@ -1,0 +1,81 @@
+{
+  "versions": [
+    "1.0.0",
+    "0.9.9",
+    "0.9.8",
+    "0.9.7"
+  ],
+  "version": "1.0.0",
+  "api": {
+    "exceptions": {
+      "url": "http://localhost:85/data/EXCEPTIONS.json"
+    },
+    "NGN": {
+      "type": "singleton"
+    },
+    "NGN.Class": {
+      "url": "./data/NGN.Class.json?v=1",
+      "tag": "new"
+    },
+    "NGN.model.data.Association": {
+      "url": "./data/NGN.model.data.Association.json?v=1"
+    },
+    "NGN.model.data.Monitor": {
+      "url": "./data/NGN.model.data.Monitor.json?v=1"
+    },
+    "NGN.model.data.Store": {
+      "url": "./data/NGN.model.data.Store.json?v=1"
+    },
+    "NGN.model.Email": {
+      "url": "./data/NGN.model.Email.json?v=1"
+    },
+    "NGN.model.Login": {
+      "url": "./data/NGN.model.Login.json?v=1"
+    },
+    "NGN.model.Model": {
+      "url": "./data/NGN.model.Model.json?v=1"
+    },
+    "NGN.model.Person": {
+      "url": "./data/NGN.model.Person.json?v=1"
+    },
+    "NGN.Pattern": {
+      "url": "./data/NGN.Pattern.json?v=1"
+    },
+    "NGN.String": {
+      "url": "./data/NGN.String.json?v=1"
+    },
+    "UTIL": {
+      "url": "./data/UTIL.json?v=1"
+    }
+  },
+  "guides":{
+    "Misc": {
+      "desc":"HTML description of the category",
+      "logo": "http://google.com/logo.gif",
+      "docs": {
+        "Guide A": {
+          "desc": "Awesome guide for the future of someting.",
+          "url": "http://domain.com/page.json"
+        },
+        "Guide B": {
+          "desc": "Awesome guide for the future of someting.",
+          "url": "http://domain.com/page.json"
+        }
+      }
+    },
+    "Getting Started": {
+      "desc":"HTML description of the category",
+      "logo": "http://google.com/logo.gif",
+      "docs": {
+        "Guide A": {
+          "desc": "Awesome guide for the future of someting.",
+          "url": "http://domain.com/page.json"
+        },
+        "Guide B": {
+          "desc": "Awesome guide for the future of someting.",
+          "url": "http://domain.com/page.json"
+        }
+      }
+    }
+  }
+}
