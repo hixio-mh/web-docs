@@ -1,50 +1,175 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../core-header-panel/core-header-panel.html" />
 <link rel="import" href="../core-toolbar/core-toolbar.html" />
+<link rel="import" href="./doc-element.html" />
 
 <polymer-element name="doc-class" attributes="type, name, private, protected">
   <template>
     <link rel="stylesheet" href="./doc-class.css">
-    <style>
-
-    </style>
     <div id="main">
       <core-header-panel mode="waterfall-tall" tallclass="medium-tall">
         <div class="core-header animate medium-tall">
-          <core-toolbar>
-            <h3><template if="{{ base == 'class' }}"><img src="../../assets/icons/class.svg" height="28px" style="vertical-align:bottom;">&nbsp;</template>{{name}}</h3>
+          <core-toolbar id="toolbar">
+            <h3 style="font-size:26px !important;"><template if="{{ base == 'class' }}"><img src="../../assets/icons/class.svg" height="26px" width="22px" style="vertical-align:middle;margin-bottom:5px !important;">&nbsp;</template><span style="padding:8px 0 0 0 !important;">{{name}}</span></h3>
             <template bind="{{code}}"><core-icon-button src="../../assets/icons/code.svg" class="subtle" id="togglecode"></core-icon-button></template>
             <core-icon-button icon="print"></core-icon-button>
             <span flex></span>
 <!--            <span><paper-input label="Filter Attributes" floatingLabel="true" style="font-size: 14px;margin-top:12px;"></paper-input></span>-->
-            <core-icon-button src="../../assets/icons/configuration.svg"></core-icon-button>
-            <core-icon-button src="../../assets/icons/properties.svg"></core-icon-button>
-            <core-icon-button src="../../assets/icons/data.svg"></core-icon-button>
-            <core-icon-button src="../../assets/icons/virtual.svg"></core-icon-button>
-            <core-icon-button src="../../assets/icons/function.svg"></core-icon-button>
-            <core-icon-button src="../../assets/icons/events.svg"></core-icon-button>
+            <template if="{{_configuration}}">
+              <core-icon-button src="../../assets/icons/configuration.svg" target="featureConfiguration" on-click="{{jumpTo}}"></core-icon-button>
+            </template>
+            <template bind="{{_properties}}">
+              <core-icon-button src="../../assets/icons/properties.svg" on-click="{{jumpTo}}"></core-icon-button>
+            </template>
+            <template bind="{{_fields}}">
+              <core-icon-button src="../../assets/icons/data.svg"></core-icon-button>
+            </template>
+            <template bind="{{_virtualfields}}">
+              <core-icon-button src="../../assets/icons/virtual.svg"></core-icon-button>
+            </template>
+            <template bind="{{_fn}}">
+              <core-icon-button src="../../assets/icons/function.svg"></core-icon-button>
+            </template>
+            <template bind="{{_events}}">
+              <core-icon-button src="../../assets/icons/events.svg"></core-icon-button>
+            </template>
           </core-toolbar>
         </div>
-        <div class="content type-{{type}}">
-          <template bind="{{code}}">
+        <div class="content type-{{type}}" style="padding:20px;">
+          <template if="{{uses}}">
+            Uses: <template repeat="{{ a in uses }}"><a href="#">{{a.name}}</a></template>
+          </template>
+          <template if="{{code}}">
             Code: {{code}}
           </template>
-          <content></content>
+          <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+            <br/><br/><br/>
+          <div id="featureConfiguration">
+          <template if="{{_configuration}}">
+            <core-toolbar style="margin-left:-16px;">
+              <core-icon src="../../assets/icons/configuration.svg"></core-icon>
+              <div style="font-weight: 500;" flex>Configuration Options</div>
+              <div style="font-size:medium;font-weight:500;">Defined By</div>
+            </core-toolbar>
+            <div style="position: relative;">
+            <template repeat="{{ a in _configuration }}">
+              <div>
+                <doc-element name="{{a.name}}" type="{{a.type}}" definedby="{{a.definedby}}" id="configuration{{a.name}}">
+                    <template if="{{a.description}}">{{a.description}}</template>
+                  </doc-element>
+              </div>
+            </template>
+            </div>
+          </template>
+          </div>
         </div>
       </core-header-panel>
     </div>
   </template>
-
   <script>
+    var getQueryParams = function(){
+      var params = {};
+      location.hash.split('?').pop().split('&').forEach(function(str){
+        var a = str.split('=');
+        params[a[0]] = a.length > 1 ? a.pop() : null;
+      });
+      return params;
+    };
+    var findEl = function(node,id){
+      if (node.id === id){
+        return node;
+      }
+      for(var i=0; i<node.children.length; i++){
+        if (node.children[i].nodeName !== 'TEMPLATE'){
+          var el = findEl(node.children[i],id);
+          if (el !== null){
+            return el;
+          }
+        }
+      }
+      return null;
+    };
     Polymer({
       base: 'class',
       type: 'class',
+      types: ['configuration','property','method','datafield','virtual','event'],
+      jumpTo: function(e){
+        this.$[e.target.getAttribute('target')].scrollIntoView();
+      },
+      contentChanged: function(){
+        console.log(this.flattenTextContent().trim());
+      },
       ready: function () {
+        var me = this;
         if (['singleton','class'].indexOf(this.type.toLowerCase())){
           this.base = "class";
         }
-//        this.data = null;
-        console.log(this.type)
+        if (this.dependencies){
+          this.uses = Object.keys(this.dependencies).map(function(el){
+            var obj = this.dependencies[el];
+            obj.name = el;
+            return obj;
+          });
+        }
+
+        SVG.update(this.$.main);
+
+        var params = getQueryParams();
+        if (params.show){
+          this.scrollTo(params.show);
+        }
+      },
+      scrollTo: function(item){
+        var type = item.split(':')[0].trim(),
+            nm = item.split(':').pop().trim(),
+            me = this;
+
+        type = type === nm ? '' : type.trim().toLowerCase();
+        setTimeout(function(){
+          var el = me.shadowRoot.querySelectorAll('doc-element');
+          for (var i=0; i<el.length; i++){
+            if (type.length === 0){
+              for (var x=0;x<me.types.length;x++){
+                if (el[i].id === me.types[x]+nm){
+                  type = me.types[x];
+                  break;
+                }
+              }
+            }
+            if(el[i].id === type+nm || el[i].id === nm){
+              el[i].scrollIntoView();
+              el[i].description && !el[i].opened && el[i].toggle();
+              //TODO: Highlight the selected element
+              break;
+            }
+          }
+        },1);
+      },
+      get hassummary(){
+        return this.hasOwnProperty('summary');
+      },
+      configChanged: function(err, v){
+        this._configuration = Object.keys(v).map(function(attr,i){
+          var o = v[attr]
+          o.name = attr;
+          return o;
+        });
       }
     });
   </script>

@@ -60,7 +60,6 @@
       ready: function () {
       },
       exceptionsChanged: function(err, data){
-        console.log(data);
         this.errs = Object.keys(data).map(function(e){
           var obj = data[e];
           obj.title = e;

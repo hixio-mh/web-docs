@@ -8,6 +8,6 @@ core-item[tag]:after {
   border-radius: 2px;
   padding: 2px 4px 4px 4px !important;
   position: absolute;
-  top: 6px;
+  top: 6px !important;
   right: 0px;
 }

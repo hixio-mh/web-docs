@@ -1,0 +1,115 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-toolbar/core-toolbar.html" />
+<link rel="import" href="../core-collapse/core-collapse.html" />
+<link rel="import" href="../core-icon-button/core-icon-button.html" />
+
+<polymer-element name="doc-element" attributes="name,type,definedby,summary,description">
+  <template>
+    <link rel="stylesheet" href="./doc-element.css">
+    <div id="attr">
+      <div on-click="{{toggle}}" style="min-width: 16px !important;"><img src="../../assets/icons/arrow-right.svg" width="16" height="16"/></div>
+      <div>
+        <core-toolbar>
+          <div>
+            <label on-click="{{toggle}}">{{name}}</label>
+            <template if="{{_types}}">:&nbsp;
+              <span id="types"><template repeat="{{ t in _types }}"><a href="#{{t}}">{{t}}</a></template></span>
+            </template>
+            <template if="{{_tags}}">
+              <span id="tags">
+                <template repeat="{{ t in _tags }}">
+                  <a href="#">{{t}}</a>
+                </template>
+              </span>
+            </template>
+          </div>
+          <span flex></span>
+          <template if="{{definedby}}"><a href="#{{definedBy}}">{{definedby}}</a></template>
+        </core-toolbar>
+        <core-collapse id="summary" opened="true">{{summary}}</core-collapse>
+        <core-collapse id="detail" on-core-collapse-open="{{toggled}}">
+          <content></content>
+        </core-collapse>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    var splitter = /[(\\|\/|\||\,)]+/;
+    var flattenTextContent = function(node){
+      var str = node.textContent || '';
+      for (var c in node.childNodes){
+        str += flattenTextContent(c).trim();
+      }
+      return str.trim();
+    };
+    var updateContent = function(node,links){
+      Object.keys(links).forEach(function(l){
+        var a = l.split('#');
+        var ttl = a[0].trim()+(a[0].trim().length>0?'.<span>':'')+a[a.length-1].split(':').pop()+(a[0].trim().length>0?'</span>':'');
+        var re = new RegExp(l,'g');
+        node.innerHTML = node.innerHTML.replace(re,'<a href="'+links[l]+'">'+ttl+'</a>');
+      });
+    };
+    Polymer({
+      ready: function () {
+        var me = this,
+            d = flattenTextContent(this).replace(splitter,''),
+            links = this.getLinks(d);
+
+        this.tags && (this._tags = this.tags.split(splitter));
+        this.type && (this._types = this.type.split(splitter));
+
+        SVG.update(this.$.attr);
+
+        this.description = d.length > 125;
+        this.summary = this.description ? d.substr(0,125)+'...' : d;
+        setTimeout(function(){
+          links && updateContent(me.$.summary,links);
+        },1);
+        links && updateContent(this,links);
+        !this.description && (this.$.attr.classList.add('static'));
+        setTimeout(function(){
+          var lnks = me.querySelectorAll('a');
+          for (var l in lnks){
+            try {
+              lnks[l].addEventListener('click',function(e){
+                return false;
+              });
+            } catch(e){}
+          }
+        },300);
+      },
+      get opened(){
+        return this.$.detail.opened;
+      },
+      toggle: function(){
+        if (this.description === true){
+          this.$.summary.toggle();
+          this.$.detail.toggle();
+        }
+      },
+      toggled: function(evt, open, el){
+        (open ? (this.$.attr.classList.add('toggled')) : (this.$.attr.classList.remove('toggled')));
+      },
+      typeChanged: function(err, v){
+        this._types = v.split(splitter);
+        SVG.update(this.$.attr);
+      },
+      getLinks: function(str){
+        var re = /([^\s]+|(?:^|\W))#([^\s]+)/g, match, matches = {}, me = this;
+        while (match = re.exec(str)) {
+          var el = match[0].trim();
+          if (el.charAt(0) === '#'){
+            matches[el] = location.hash.split('?')[0]+'?show='+el.substr(1,el.length);
+          } else {
+            matches[el] = '#'+el.replace('#','?show=');
+          }
+        }
+        return Object.keys(matches).length>0?matches:undefined;
+      }
+    });
+  </script>
+
+  <!--  <script src="./doc-class.js" type="text/javascript"></script>-->
+</polymer-element>

@@ -19,6 +19,7 @@ core-toolbar > h3 {
 }
 core-header-panel {
   height: 100%;
+  background: #efefef;
 }
 core-header-panel[mode=cover]::shadow #mainContainer {
   left: 70px;
@@ -28,7 +29,7 @@ core-header-panel[mode=cover]::shadow #mainContainer {
   line-height: 60px;
   font-size: 18px;
   padding: 0 10px;
-  background-color: #fefefe;
+  background-color: #efefef;
   color: #212121;
   transition: height 0.2s;
 }
@@ -39,8 +40,8 @@ core-header-panel[mode=cover]::shadow #mainContainer {
   height: 120px;
 }
 .content {
-  height: 3000px;
-  background: #fefefe;
+/*  height: 3000px;*/
+  background: #efefef;
   /*        pink #DB0A5B*/
 }
 .type-deprecated {

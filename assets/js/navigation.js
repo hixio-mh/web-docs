@@ -5,46 +5,162 @@ var NAV = {
     guide: null
   },
 
+  openClass: function(id,callback){
+    var doc = document.getElementById('doc.'+id);
+    location.hash = '#'+id;
+    if (doc === null){
+      // Retreive the JSON representation of the document
+      AJAX.json(document.getElementById(id).getAttribute('url'),function(data){
+        doc = document.createElement('doc-class');
+        doc.setAttribute('name',data.class.name);
+        doc.setAttribute('id','doc.'+data.class.name);
+        SVG.update(doc);
+        document.getElementById('documents').appendChild(doc);
+        Object.keys(data).filter(function(key){
+          if (typeof data[key] === 'object'){
+            return Object.keys(data[key]).length > 0;
+          }
+          return true;
+        }).forEach(function(key){
+          doc[key==='configuration'?'config':key] = data[key];
+        });
+        doc.parentNode.selected = [].indexOf.call(doc.parentNode.children, doc);
+        callback && callback(doc);
+      });
+    } else {
+      doc.parentNode.selected = [].indexOf.call(doc.parentNode.children, doc);
+      callback && callback(doc);
+    }
+  },
+
+  openExceptions: function(callback){
+    var doc = document.getElementById('exceptions');
+    location.hash = '#exceptions';
+    if (doc === null){
+      AJAX.json(NAV.data.exceptions.url, function(data){
+        doc = document.createElement('doc-exceptions');
+        doc.setAttribute('id','EXCEPTIONS');
+        // Add data to the exceptions web component
+        doc.exceptions = data;
+        var p = document.getElementById('documents');
+        p.appendChild(doc);
+        p.selected = [].indexOf.call(p.children,doc);
+        SVG.update();
+        callback && callback(doc);
+      });
+    } else {
+      doc.parentNode.selected = [].indexOf.call(doc.parentNode.children, doc);
+      callback && callback(doc);
+    }
+  },
+
   clickHandler: function(e){
     var t = e.currentTarget;
     if (t.attributes.doctype){
       switch(t.getAttribute('doctype')){
         case 'exceptions':
-          var doc = document.getElementById('exceptions');
-          if (doc === null){
-            AJAX.json(NAV.data.exceptions.url, function(data){
-              console.dir(data);
-              doc = document.createElement('doc-exceptions');
-              doc.setAttribute('id','exceptions');
-              // Add data to the exceptions web component
-              doc.exceptions = data;
-              var p = document.getElementById('documents');
-              p.appendChild(doc);
-              p.selected = [].indexOf.call(p.children,doc);
-            });
-          } else {
-            doc.parentNode.selected = [].indexOf.call(doc.parentNode.children, doc);
-          }
+          location.hash = 'EXCEPTIONS';
           break;
         case 'class':
-          if (t.attributes.url){
-            var doc = document.getElementById('doc.'+t.getAttribute('docid'));
-
-            if (doc === null){
-              // Retreive the JSON representation of the document
-              AJAX.json(t.getAttribute('url'),function(data){
-                doc = document.createElement('doc-class');
-                doc.setAttribute('name',data.class.name);
-                doc.setAttribute('id','doc.'+data.class.name);
-                document.getElementById('documents').appendChild(doc);
-                doc.parentNode.selected = [].indexOf.call(doc.parentNode.children, doc);
-              });
-            } else {
-              doc.parentNode.selected = [].indexOf.call(doc.parentNode.children, doc);
-            }
-          }
+          t.attributes.url && (location.hash=t.getAttribute('id'));
           break;
       }
+    }
+  },
+
+  historyCloseItem: function(e){
+    e.preventDefault && e.preventDefault();
+    document.getElementById('history').removeChild(e.target.parentNode);
+  },
+
+  updateHistory: function(cls){
+    var hist = document.getElementById('history');
+    var el = document.getElementById('class_'+cls.replace('.','_'));
+    if (el === null){
+      var li = document.createElement('li');
+      li.setAttribute('id','class_'+cls.replace('.','_'));
+      li.setAttribute('href',cls);
+      var img = document.createElement('img'), txt = cls;
+      switch(cls.toLowerCase()){
+        case 'exceptions':
+          img.setAttribute('src','./assets/icons/flag.svg');
+          txt = 'EXCEPTIONS';
+          li.classList.add('error');
+          break;
+        default:
+          img.setAttribute('src','./assets/icons/class.svg');
+          li.classList.add('class');
+      }
+      li.appendChild(img);
+      var txtel = document.createTextNode(txt);
+      li.appendChild(txtel);
+      var c = document.createElement('a');
+      c.innerHTML = '&times;';
+      c.addEventListener('click',NAV.historyCloseItem);
+      c.setAttribute('href','#'+cls);
+
+      li.addEventListener('click',function(e){
+        if(e.target.nodeName !== 'A'){
+          var el = e.target;
+          while(!el.attributes.href){
+            el = el.parentNode;
+          }
+          location.hash = el.getAttribute('href');
+        }
+      });
+
+      li.appendChild(c);
+      setTimeout(function(){
+        SVG.update(li);
+        if (hist.children.length === 0){
+          hist.appendChild(li);
+        } else {
+          hist.insertBefore(li,hist.firstChild);
+        }
+      },500);
+    } else if (hist.children.length > 1) {
+      hist.insertBefore(el,hist.firstChild);
+    }
+  },
+
+  lastHash: null,
+
+  loadPage: function(){
+    if ((NAV.lastHash||'').split('?')[0] === location.hash.split('?')[0]){
+      return;
+    }
+    var lastpage = NAV.lastHash;
+    NAV.lastHash = location.hash;
+    var parms = getQueryParams();
+    var cls = location.hash.split('?')[0].trim().replace('#','') || null;
+    if (cls !== null){
+      setTimeout(function(){
+        if (cls.toLowerCase() === 'exceptions'){
+          NAV.openExceptions(function(){
+            var p = document.getElementById('EXCEPTIONS').parentNode;
+            p.opened = true;
+            p.selected = 0;
+          });
+        } else {
+          NAV.openClass(cls,function(page){
+            // page is the DOM element present on screen.
+            var p = document.getElementById(cls).parentNode;
+            p.selected = [].indexOf.call(p.childNodes, document.getElementById(cls));
+            while(['CORE-MENU','CORE-SUBMENU'].indexOf(p.nodeName) >= 0){
+              p.opened = true;
+              p = p.parentNode;
+            }
+            if (parms.hasOwnProperty('show')){
+              page.scrollTo(parms.show);
+              location.hash = location.hash+'?show='+parms.show;
+            }
+          });
+        }
+        // Update history
+        if ((lastpage||'__null__').trim().toLowerCase() !== (NAV.lastHash||'__null__').trim().toLowerCase() && lastpage !== null){
+          NAV.updateHistory(lastpage.substr(1,lastpage.length));
+        }
+      },1);
     }
   },
 
@@ -158,7 +274,7 @@ var NAV = {
     // Add to menu
     var i = document.createElement('core-item');
     i.classList.add('exception');
-    i.setAttribute('id','doc.Exceptions');
+    i.setAttribute('id','EXCEPTIONS');
     i.setAttribute('doctype','exceptions');
     i.innerHTML = "<img src='./assets/icons/flag.svg'>EXCEPTIONS";
     i.removeEventListener('click',NAV.clickHandler);
@@ -167,7 +283,7 @@ var NAV = {
     parent.insertBefore(i,parent.firstChild);
   },
 
-  create: function(){
+  create: function(callback){
     AJAX.json("./data/navigation.json", function (data) {
 
       // Populate data
@@ -187,6 +303,16 @@ var NAV = {
       cm.setAttribute('selected',0);
       NAV.generateGuideMenu(cm);
       document.getElementById('menu-guide').appendChild(cm);
+
+      // Listen for clicks on the
+      var pages = document.querySelector('#navigation > core-pages');
+      var tabs = document.querySelector('paper-tabs');
+      tabs.addEventListener('core-select', function () {
+        pages.selected = tabs.selected;
+      });
+
+      NAV.loadPage();
+      callback && callback();
     });
   }
 };

@@ -4,7 +4,7 @@ var SVG = {
   swapImagesForSvg: function(imgs){
     for (var x = 0; x < imgs.length; x++) {
       var img = imgs[x];
-      if (SVG.cache[img.src] !== null){
+      if (SVG.cache[img.src] !== null && img !== null && img.parentNode !== null){
         var svg = SVG.cache[img.src].cloneNode(true);
         var attr = img.attributes;
         for (var y=0;y<attr.length;y++){
@@ -20,8 +20,9 @@ var SVG = {
     }
   },
 
-  update: function () {
-    var imgs = document.querySelectorAll('img[src$=".svg"]');
+  update: function (section) {
+    section = section || document;
+    var imgs = section.querySelectorAll('img[src$=".svg"]');
 
     // Loop through images, prime the cache.
     for (var i = 0; i < imgs.length; i++) {

@@ -61,13 +61,16 @@
         <core-icon-button icon="social:notifications" style="width: 25px;margin:5px 12px 0 0;"></core-icon-button>
         <core-icon-button icon="search" style="width: 25px;margin:5px 12px 0 0;"></core-icon-button>
       </div>
-      <div id="history">
+      <div id="history"></div>
+
+<!--
         <li class="class"><img src="./assets/icons/class.svg" />NGN</li>
         <li class="class"><img src="./assets/icons/class.svg" />NGN.http.Server</li>
         <li class="class"><img src="./assets/icons/class.svg" />NGN.http.Server</li>
         <li class="guide"><img src="./assets/icons/book.svg" />Hacking on NGN</li>
         <li class="guide"><img src="./assets/icons/book.svg" />Developing NGN Applications with Awesome Sauce and a fruit pie</li>
-      </div>
+-->
+
       <core-pages style="flex:100;">
         <div id="menu-api"></div>
         <div id="menu-guide"></div>
@@ -76,15 +79,21 @@
         Bottom Tools
       </div>
     </div>
-    <div main style="background-color:#171D25;display:flex;">
+    <div main style="display:flex;">
       <core-pages style="flex: 1 1 auto;" id="documents">
         <div id="welcome">
           Welcome page
         </div>
+<!--
+        <doc-class id="doc.NGN.http.Server" name="NGN.http.Server" type="deprecated">
+          <button onclick="document.querySelector('core-drawer-panel').togglePanel();">toggle drawer</button>
+        </doc-class>
+-->
       </core-pages>
     </div>
   </core-drawer-panel>
   <!--    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+<!--  <script src="./assets/js/smoothScroll.js"></script>-->
   <script src="./assets/js/ajax.js"></script>
   <script src="./assets/js/svg.js"></script>
   <script src="./assets/js/navigation.js"></script>

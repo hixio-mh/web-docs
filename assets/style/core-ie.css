@@ -6,8 +6,8 @@ core-submenu #submenu {
 }
 core-item[tag]:after {
   border-radius: 3px;
-  padding: 8px 4px 2px 4px !important;
+  padding: 0px 4px 2px 4px !important;
   position: absolute;
-  top: -6px;
+  top: -6px !important;
   right: 0;
 }

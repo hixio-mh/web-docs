@@ -60,7 +60,7 @@ body {
   position: absolute;
   content: 'VIEWED RECENTLY';
   font-size: xx-small;
-  color: rgba(255,255,255,.15);
+  color: rgba(255,255,255,.85);
   top: 6px;
   left: 10px;
 }
@@ -69,6 +69,12 @@ body {
   position: relative;
   list-style-type: none;
   padding: 4px 4px 4px 32px !important;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  opacity: .5;
+}
+#history > li:hover {
+  opacity: .95;
 }
 #history > li > svg {
   position: absolute;
@@ -84,19 +90,39 @@ body {
 #history > li.guide {
   color: #f0ece2;
 }
-#history > li:hover:after {
-  position: absolute;
-  padding: 8px;
+#history > li.error {
+  color: #D64541;
+}
+#history > li.error > svg {
+  width: 14px;
+  height: 16px;
+  margin: 0 0 2px 2px;
+}
+#history > li.error > svg > path {
+  fill: #D64541;
+}
+#history > li > a {
+  display: none;
+  float: right;
+  line-height: 18px;
+  vertical-align: middle;
+  text-decoration: none;
   color: rgba(255,255,255,.25);
   font-weight: bold;
   font-size: 18px;
   font-weight: 100;
-  content: '\00d7';
-  right: 4px;
-  top: -3px;
 }
-#history > li:hover:after:hover {
-  color: red;
+#history > li:hover > a {
+  display: block;
+}
+#history > li:hover {
+  border-bottom: 1px dashed rgba(255,255,255,.05);
+}
+#history > li:hover > a:hover {
+  color: #ccc;
+}
+#history:empty {
+  display: none !important;
 }
 #navigation > core-pages > div {
   overflow-y: hidden;

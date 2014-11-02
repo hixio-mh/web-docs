@@ -1,0 +1,139 @@
+
+core-toolbar > div > label:hover {
+  cursor: pointer;
+}
+core-toolbar > div > label,
+a {
+  color: #4B77BE;
+}
+#attr {
+  position: relative;
+  border-top: 1px solid #ccc;
+  padding: 3px;
+  margin: 0 0 6px 30px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+#attr > div:first-of-type {
+  position: relative;
+  border: 1px solid transparent;
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  padding: 17px 2px 2px 2px;
+  margin: 6px 0 0 0;
+  position: relative;
+  width: 16px !important;
+  border: 1px solid transparent;
+}
+#attr > div:last-child {
+  flex: 1 1 auto;
+  position: relative;
+}
+#attr > div:first-of-type:hover {
+  border: 1px dashed #dfdfdf;
+  cursor: pointer;
+}
+#attr > div > core-toolbar {
+  flex: 1 1 auto;
+  background: transparent !important;
+  font-size: medium !important;
+}
+#attr > div > core-toolbar > div > label {
+  font-weight: 500;
+  text-shadow: none !important;
+}
+core-toolbar > a:last-child,
+#types > a {
+  text-decoration: none;
+}
+#types > a {
+  color: #3A539B;
+}
+#types > a:hover {
+  color: #1E8BC3;
+}
+#types > a:not(:last-child):after {
+  content: '|';
+  color: #777;
+  padding: 1px;
+}
+core-collapse {
+  padding-left: 15px !important;
+}
+
+#attr.toggled > div > svg {
+  display: none;
+}
+#attr.toggled:before {
+  z-index: 0;
+  position: absolute;
+  content: ' ';
+  height: 16px;
+  width: 16px !important;
+  top: 25px;
+  left: 4px;
+  background-image: url(../../assets/icons/arrow-up.svg);
+  cursor: pointer;
+}
+
+#attr.static > div:first-of-type,
+#attr.toggled > div:first-of-type {
+  position: relative;
+/*  border: 1px solid #ddd;*/
+/*  background-color: #ececec;*/
+}
+
+attr.static > div:first-of-type:hover {
+  border: 1px solid transparent !important;
+}
+#attr.static > div > core-toolbar > div > label:hover,
+#attr.static > div:first-of-type:hover {
+  cursor: default !important;
+}
+#attr.static > div:first-of-type > img,
+#attr.static > div:first-of-type > svg,
+#attr.static > div:first-of-type {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+
+#attr.static > div > core-toolbar > div > label {
+  color: #3A539B;
+}

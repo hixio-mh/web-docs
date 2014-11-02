@@ -32,7 +32,32 @@
   "hierarchy": [
     "NGN.Class"
   ],
-  "configuration": {},
+  "configuration": {
+    "name": {
+      "line": 158,
+      "type": "String/Number/Date",
+      "description": "The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value.",
+      "required": false,
+      "default": "null",
+      "definedby": "NGN.model.Model"
+    },
+    "runAsAgent": {
+      "line": 158,
+      "type": "String",
+      "description": "The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value. The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value. The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value. The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value. The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value. Might be related to NGN.model.Model#configuration:type",
+      "required": false,
+      "default": "null",
+      "definedby": "NGN.model.Model"
+    },
+    "useCORS": {
+      "line": 158,
+      "type": "String/NGN.model.Model",
+      "description": "The unique ID of the model object. If #idAttribute is defined,\r\nthis will get/set the #idAttribute value.",
+      "required": false,
+      "default": "null",
+      "definedby": "NGN.model.Model"
+    }
+  },
   "properties": {
     "prototype": {
       "accessor": false,
